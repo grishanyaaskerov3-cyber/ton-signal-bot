@@ -39,6 +39,7 @@ def get(url, accept_json=True, retries=3, timeout=25):
         except Exception:
             if i == retries - 1: raise
             time.sleep(3)
+    raise RuntimeError("rate limited")
 
 
 def f(x, d=0.0):
@@ -93,34 +94,56 @@ def universe(tonp):
     return [a for a, _ in sorted(cands.items(), key=lambda kv: -kv[1])], len(toks)
 
 
-def fetch_pools(detail=150):
-    eps = [f"trending_pools?include=base_token&page={i}" for i in (1, 2, 3)] + \
-          [f"new_pools?include=base_token&page={i}" for i in (1, 2, 3)] + \
-          [f"pools?include=base_token&sort=h24_volume_usd_desc&page={i}" for i in range(1, 6)] + \
-          [f"pools?include=base_token&sort=h24_tx_count_desc&page={i}" for i in (1, 2, 3)]
+def ds_to_gt(p, now_ms):
+    """Convert a DexScreener pair into the GeckoTerminal pool shape used by parse_pool."""
+    b = p.get("baseToken") or {}
+    tx = (p.get("txns") or {}).get("h1") or {}
+    created = p.get("pairCreatedAt")
+    pool = {"id": "ton_" + p["pairAddress"], "attributes": {
+        "address": p["pairAddress"], "name": f"{b.get('symbol')} / {(p.get('quoteToken') or {}).get('symbol')}",
+        "base_token_price_usd": p.get("priceUsd"), "reserve_in_usd": (p.get("liquidity") or {}).get("usd"),
+        "fdv_usd": p.get("fdv"), "market_cap_usd": p.get("marketCap"),
+        "price_change_percentage": p.get("priceChange") or {}, "volume_usd": p.get("volume") or {},
+        "transactions": {"h1": {"buys": tx.get("buys", 0), "sells": tx.get("sells", 0), "buyers": int(tx.get("buys", 0) * 0.8)}},
+        "pool_created_at": datetime.fromtimestamp(created / 1000, timezone.utc).isoformat() if created else None},
+        "relationships": {"base_token": {"data": {"id": "ton_" + (b.get("address") or "")}},
+                          "quote_token": {"data": {"id": "ton_" + ((p.get("quoteToken") or {}).get("address") or "")}}}}
+    return pool, {"symbol": b.get("symbol"), "name": b.get("name")}
+
+
+def fetch_pools(detail=300):
+    """GeckoTerminal trending/new (2 calls, strict IP limits on CI) + full-universe prefilter + DexScreener details (lenient limits)."""
     pools, tokens = {}, {}
-    def take(d):
-        for t in d.get("included", []) or []:
-            tokens[t["id"]] = t.get("attributes", {})
-        for p in d.get("data", []) or []:
-            pools[p["id"]] = p
     t0 = time.time()
-    for ep in eps:
-        try: take(get(f"{GT}/networks/ton/{ep}"))
-        except Exception as ex: errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
-        time.sleep(2.1)  # free API ~30 req/min
-    print(f"[t] GT pages {time.time()-t0:.0f}s"); t0 = time.time()
+    for ep in ("trending_pools?include=base_token&page=1", "new_pools?include=base_token&page=1"):
+        try:
+            d = get(f"{GT}/networks/ton/{ep}")
+            for t in d.get("included", []) or []: tokens[t["id"]] = t.get("attributes", {})
+            for p in d.get("data", []) or []: pools[p["id"]] = p
+        except Exception as ex:
+            errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
+        time.sleep(3)
     tonp = gt_ton_price()
+    print(f"[t] GT {time.time()-t0:.0f}s"); t0 = time.time()
     cands, scanned = universe(tonp)
-    print(f"[t] universe {time.time()-t0:.0f}s"); t0 = time.time()
-    known = {p["attributes"].get("address") for p in pools.values()}
-    extra = [a for a in cands if a not in known][:detail]
-    for i in range(0, len(extra), 30):  # detailed stats for top pre-filtered candidates
-        try: take(get(f"{GT}/networks/ton/pools/multi/{','.join(extra[i:i + 30])}?include=base_token"))
-        except Exception as ex: errors.append(f"GT multi: {type(ex).__name__}")
-        time.sleep(2.1)
-    print(f"[t] multi {time.time()-t0:.0f}s, pools={len(pools)}")
-    stats = {"scanned": max(scanned, len(pools)), "prefiltered": len(set(cands) | known), "detailed": len(pools), "tonp": tonp}
+    print(f"[t] universe {time.time()-t0:.0f}s, candidates={len(cands)}"); t0 = time.time()
+    gt_addrs = [p["attributes"].get("address") for p in pools.values()]
+    want = list(dict.fromkeys(gt_addrs + cands))[:detail + len(gt_addrs)]
+    now_ms = time.time() * 1000
+    for i in range(0, len(want), 30):
+        try:
+            d = get("https://api.dexscreener.com/latest/dex/pairs/ton/" + ",".join(want[i:i + 30]))
+            for p in d.get("pairs") or []:
+                if p.get("chainId") != "ton": continue
+                pool, tok = ds_to_gt(p, now_ms)
+                pools[pool["id"]] = pool
+                tokens[pool["relationships"]["base_token"]["data"]["id"]] = tok
+        except Exception as ex:
+            errors.append(f"DexScreener: {type(ex).__name__}")
+        time.sleep(0.5)
+    print(f"[t] details {time.time()-t0:.0f}s, pools={len(pools)}")
+    if not tonp: tonp = ton_price(pools)
+    stats = {"scanned": max(scanned, len(pools)), "prefiltered": len(cands), "detailed": len(pools), "tonp": tonp}
     return pools, tokens, stats
 
 
@@ -374,11 +397,11 @@ def movers(direction, period):
     pools, tokens, _ = fetch_pools()
     best = [t for t in best_by_token(pools, tokens, now).values() if t["v24"] >= 1000]
     if period == "7d":
-        cands = sorted(best, key=lambda t: t["v24"] + t["liq"] * 0.2, reverse=True)[:40]
+        cands = sorted(best, key=lambda t: t["v24"] + t["liq"] * 0.2, reverse=True)[:30]
         for t in cands:
             try: t["ch"] = change_7d(t["pool"])
             except Exception: t["ch"] = None
-            time.sleep(2.1)
+            time.sleep(3)
         best = [t for t in cands if t.get("ch") is not None]
     else:
         for t in best: t["ch"] = t["h1"] if period == "1h" else t["h24"]
