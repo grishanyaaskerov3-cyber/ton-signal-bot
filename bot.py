@@ -49,22 +49,75 @@ def f(x, d=0.0):
 def clip(x, lo, hi): return max(lo, min(hi, x))
 
 
-def fetch_pools():
-    eps = ["trending_pools?include=base_token&page=1", "trending_pools?include=base_token&page=2",
-           "new_pools?include=base_token&page=1", "new_pools?include=base_token&page=2"] + \
-          [f"pools?include=base_token&sort=h24_volume_usd_desc&page={i}" for i in (1, 2, 3)]
+def gt_ton_price():
+    try:
+        d = get(f"{GT}/simple/networks/ton/token_price/{TON_ADDR}")
+        return f(d["data"]["attributes"]["token_prices"].get(TON_ADDR)) or None
+    except Exception as ex:
+        errors.append(f"TON: {type(ex).__name__}")
+        return None
+
+
+def universe(tonp):
+    """Cheap pre-scan of ALL TON pools (STON.fi + DeDust + DexScreener). Returns (ranked candidate pool addrs, tokens scanned)."""
+    cands, toks = {}, set()
+    try:  # STON.fi: ~50k pools with liquidity + 24h volume in USD
+        for p in get("https://api.ston.fi/v1/pools", timeout=60).get("pool_list", []):
+            toks.add(p.get("token0_address")); toks.add(p.get("token1_address"))
+            if p.get("deprecated"): continue
+            liq, v = f(p.get("lp_total_supply_usd")), f(p.get("volume_24h_usd"))
+            if liq >= MIN_LIQ and v >= 300:
+                cands[p["address"]] = v + liq * 0.01
+    except Exception as ex:
+        errors.append(f"STON.fi: {type(ex).__name__}")
+    try:  # DeDust: reserves only (its volume stats are empty), TON-paired pools
+        for p in get("https://api.dedust.io/v2/pools-lite", timeout=60):
+            a = p.get("assets", [])
+            for x in a: toks.add(x)
+            if "native" in a and tonp:
+                i = a.index("native")
+                liq = int(p["reserves"][i]) / 1e9 * 2 * tonp
+                if liq >= MIN_LIQ:
+                    cands.setdefault(p["address"], liq * 0.01)
+    except Exception as ex:
+        errors.append(f"DeDust: {type(ex).__name__}")
+    try:  # DexScreener search
+        for q in ("ton", "jetton"):
+            for p in get(f"https://api.dexscreener.com/latest/dex/search?q={q}").get("pairs", []) or []:
+                if p.get("chainId") == "ton" and f((p.get("liquidity") or {}).get("usd")) >= MIN_LIQ:
+                    toks.add((p.get("baseToken") or {}).get("address"))
+                    cands.setdefault(p["pairAddress"], f((p.get("volume") or {}).get("h24")))
+    except Exception as ex:
+        errors.append(f"DexScreener: {type(ex).__name__}")
+    toks.discard(None)
+    return [a for a, _ in sorted(cands.items(), key=lambda kv: -kv[1])], len(toks)
+
+
+def fetch_pools(detail=150):
+    eps = [f"trending_pools?include=base_token&page={i}" for i in (1, 2, 3)] + \
+          [f"new_pools?include=base_token&page={i}" for i in (1, 2, 3)] + \
+          [f"pools?include=base_token&sort=h24_volume_usd_desc&page={i}" for i in range(1, 6)] + \
+          [f"pools?include=base_token&sort=h24_tx_count_desc&page={i}" for i in (1, 2, 3)]
     pools, tokens = {}, {}
+    def take(d):
+        for t in d.get("included", []) or []:
+            tokens[t["id"]] = t.get("attributes", {})
+        for p in d.get("data", []) or []:
+            pools[p["id"]] = p
     for ep in eps:
-        try:
-            d = get(f"{GT}/networks/ton/{ep}")
-            for t in d.get("included", []) or []:
-                tokens[t["id"]] = t.get("attributes", {})
-            for p in d.get("data", []) or []:
-                pools[p["id"]] = p
-        except Exception as ex:
-            errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
-        time.sleep(2.2)  # free API ~30 req/min
-    return pools, tokens
+        try: take(get(f"{GT}/networks/ton/{ep}"))
+        except Exception as ex: errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
+        time.sleep(2.1)  # free API ~30 req/min
+    tonp = gt_ton_price()
+    cands, scanned = universe(tonp)
+    known = {p["attributes"].get("address") for p in pools.values()}
+    extra = [a for a in cands if a not in known][:detail]
+    for i in range(0, len(extra), 30):  # detailed stats for top pre-filtered candidates
+        try: take(get(f"{GT}/networks/ton/pools/multi/{','.join(extra[i:i + 30])}?include=base_token"))
+        except Exception as ex: errors.append(f"GT multi: {type(ex).__name__}")
+        time.sleep(2.1)
+    stats = {"scanned": max(scanned, len(pools)), "prefiltered": len(set(cands) | known), "detailed": len(pools), "tonp": tonp}
+    return pools, tokens, stats
 
 
 def parse_pool(p, tokens, now):
@@ -279,14 +332,14 @@ def log_signals(hist, top, now):
 def build_report(log=False):
     now = datetime.now(timezone.utc)
     hist = load_hist()
-    pools, tokens = fetch_pools()
+    pools, tokens, st = fetch_pools()
     best = best_by_token(pools, tokens, now)
     if log:
         try: update_hist(hist, best, now)
         except Exception as ex: errors.append(f"history: {type(ex).__name__}")
-    top = sorted((score(t) for t in best.values()), key=lambda x: x["score"], reverse=True)[:5]
-    tp = ton_price(pools)
-    L = [f"<b>TON {pfmt(tp) if tp else 'н/д'}</b>"]
+    top = sorted((score(t) for t in best.values()), key=lambda x: x["score"], reverse=True)[:7]
+    tp = st["tonp"] or ton_price(pools)
+    L = [f"<b>TON {pfmt(tp) if tp else 'н/д'}</b> · скан {st['scanned']:,} токенов → {len(best)} с ликв ≥$10k".replace(",", " ")]
     if not top: L.append("Подходящих монет нет (или API недоступно).")
     for t in top:
         up, down, cal = success(t, hist)
@@ -314,7 +367,7 @@ def change_7d(pool):
 
 def movers(direction, period):
     now = datetime.now(timezone.utc)
-    pools, tokens = fetch_pools()
+    pools, tokens, _ = fetch_pools()
     best = [t for t in best_by_token(pools, tokens, now).values() if t["v24"] >= 1000]
     if period == "7d":
         cands = sorted(best, key=lambda t: t["v24"] + t["liq"] * 0.2, reverse=True)[:40]
