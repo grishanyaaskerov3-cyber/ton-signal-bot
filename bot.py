@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""TON token signal bot: pure script, no AI. Fetches GeckoTerminal pools + RSS news, scores tokens, sends a Telegram report."""
+"""TON token signal bot. Pure script, no AI.
+  python bot.py report        -> scheduled report (logs signals to history.json for calibration)
+  python bot.py report --dry  -> print report, send nothing
+  python bot.py poll          -> answer Telegram commands for ~4 min (long polling)
+"""
 import json, math, os, re, sys, time, html, urllib.request, urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 
 GT = "https://api.geckoterminal.com/api/v2"
-UA = {"User-Agent": "ton-signal-bot/1.0", "Accept": "application/json"}
+UA = {"User-Agent": "ton-signal-bot/1.1", "Accept": "application/json"}
 TON_ADDR = "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c"
-SKIP_SYMBOLS = {"TON", "PTON", "WTON", "USDT", "USD₮", "JUSDT", "JUSDC", "USDC", "TSTON", "STTON", "HTON", "USDE", "TSUSDE", "TONCOIN"}
+SKIP_SYMBOLS = {"TON", "PTON", "WTON", "USDT", "USD₮", "JUSDT", "JUSDC", "USDC", "TSTON", "STTON", "HTON", "USDE", "TSUSDE", "TONCOIN", "WTTON", "TTON", "JTON", "AQUSD"}
 MIN_LIQ = 10_000
-STATE_FILE = "state.json"
+HIST = "history.json"
 KYIV = timezone(timedelta(hours=2))
+BUCKETS = [(-1e9, 10, "<10"), (10, 20, "10-20"), (20, 35, "20-35"), (35, 1e9, "35+")]
+HEUR = {"<10": 10, "10-20": 20, "20-35": 30, "35+": 40}  # conservative prior, % chance of >=+5% within 6h
+MIN_SAMPLES = 20
+HIT_PCT = 5.0
 errors = []
+e = html.escape
 
 
 def get(url, accept_json=True, retries=3, timeout=25):
@@ -21,8 +30,8 @@ def get(url, accept_json=True, retries=3, timeout=25):
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 data = r.read()
             return json.loads(data) if accept_json else data
-        except urllib.error.HTTPError as e:
-            if e.code == 429:
+        except urllib.error.HTTPError as ex:
+            if ex.code == 429:
                 time.sleep(15 * (i + 1)); continue
             if i == retries - 1: raise
             time.sleep(3)
@@ -40,90 +49,124 @@ def clip(x, lo, hi): return max(lo, min(hi, x))
 
 
 def fetch_pools():
-    endpoints = [
-        "/networks/ton/trending_pools?include=base_token&page=1",
-        "/networks/ton/trending_pools?include=base_token&page=2",
-        "/networks/ton/new_pools?include=base_token&page=1",
-        "/networks/ton/new_pools?include=base_token&page=2",
-        "/networks/ton/pools?include=base_token&sort=h24_volume_usd_desc&page=1",
-        "/networks/ton/pools?include=base_token&sort=h24_volume_usd_desc&page=2",
-        "/networks/ton/pools?include=base_token&sort=h24_volume_usd_desc&page=3",
-    ]
+    eps = ["trending_pools?include=base_token&page=1", "trending_pools?include=base_token&page=2",
+           "new_pools?include=base_token&page=1", "new_pools?include=base_token&page=2"] + \
+          [f"pools?include=base_token&sort=h24_volume_usd_desc&page={i}" for i in (1, 2, 3)]
     pools, tokens = {}, {}
-    for ep in endpoints:
+    for ep in eps:
         try:
-            d = get(GT + ep)
+            d = get(f"{GT}/networks/ton/{ep}")
             for t in d.get("included", []) or []:
                 tokens[t["id"]] = t.get("attributes", {})
             for p in d.get("data", []) or []:
                 pools[p["id"]] = p
-        except Exception as e:
-            errors.append(f"GeckoTerminal {ep.split('?')[0].split('/')[-1]}: {type(e).__name__}")
-        time.sleep(2.5)  # free API ~30 req/min
+        except Exception as ex:
+            errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
+        time.sleep(2.2)  # free API ~30 req/min
     return pools, tokens
 
 
-def score_pool(p, tokens, now):
+def parse_pool(p, tokens, now):
+    """Common fields; None for TON/stables/low liquidity."""
     a = p.get("attributes", {})
     rel = p.get("relationships", {})
     base_id = (rel.get("base_token", {}).get("data") or {}).get("id", "")
-    quote_id = (rel.get("quote_token", {}).get("data") or {}).get("id", "")
     tok = tokens.get(base_id, {})
     sym = (tok.get("symbol") or a.get("name", "?").split(" / ")[0]).strip()
     if sym.upper() in SKIP_SYMBOLS or base_id.endswith(TON_ADDR):
         return None
+    if "USD" in sym.upper() and 0.95 <= f(a.get("base_token_price_usd")) <= 1.05:
+        return None  # stablecoin
     liq = f(a.get("reserve_in_usd"))
     if liq < MIN_LIQ:
         return None
     pc = a.get("price_change_percentage") or {}
-    m5, h1, h6, h24 = f(pc.get("m5")), f(pc.get("h1")), f(pc.get("h6")), f(pc.get("h24"))
     vol = a.get("volume_usd") or {}
-    v1, v24 = f(vol.get("h1")), f(vol.get("h24"))
     tx = (a.get("transactions") or {}).get("h1") or {}
-    buys, sells, buyers = int(f(tx.get("buys"))), int(f(tx.get("sells"))), int(f(tx.get("buyers")))
-    fdv = f(a.get("fdv_usd")) or f(a.get("market_cap_usd"))
-    created = a.get("pool_created_at")
     age_h = None
-    if created:
-        try: age_h = (now - datetime.fromisoformat(created.replace("Z", "+00:00"))).total_seconds() / 3600
+    if a.get("pool_created_at"):
+        try: age_h = (now - datetime.fromisoformat(a["pool_created_at"].replace("Z", "+00:00"))).total_seconds() / 3600
         except ValueError: pass
+    return {"sym": sym, "name": tok.get("name") or sym, "addr": base_id.split("_", 1)[-1], "pool": a.get("address", ""),
+            "price": f(a.get("base_token_price_usd")), "m5": f(pc.get("m5")), "h1": f(pc.get("h1")),
+            "h6": f(pc.get("h6")), "h24": f(pc.get("h24")), "v1": f(vol.get("h1")), "v24": f(vol.get("h24")),
+            "liq": liq, "buys": int(f(tx.get("buys"))), "sells": int(f(tx.get("sells"))), "buyers": int(f(tx.get("buyers"))),
+            "fdv": f(a.get("fdv_usd")) or f(a.get("market_cap_usd")), "age_h": age_h}
 
-    reasons, flags = [], []
-    s = 0.0
-    # 1) momentum
-    s += clip(m5, -20, 30) * 0.8 + clip(h1, -30, 60) * 0.5 + clip(h6, -50, 100) * 0.15
-    if h1 > 5: reasons.append(f"рост {h1:+.0f}% за 1ч")
-    # 2) volume acceleration: last hour vs avg hour of 24h
-    avg_h = v24 / 24 if v24 > 0 else 0
-    acc = v1 / avg_h if avg_h > 0 else (2.0 if v1 > 0 else 0)
+
+def best_by_token(pools, tokens, now):
+    best = {}
+    for p in pools.values():
+        try: r = parse_pool(p, tokens, now)
+        except Exception: r = None
+        if r and (r["addr"] not in best or r["liq"] > best[r["addr"]]["liq"]):
+            best[r["addr"]] = r
+    return best
+
+
+def score(t):
+    s, reasons, flags, severe = 0.0, [], [], False
+    s += clip(t["m5"], -20, 30) * 0.8 + clip(t["h1"], -30, 60) * 0.5 + clip(t["h6"], -50, 100) * 0.15
+    if t["h1"] > 5: reasons.append(f"рост {t['h1']:+.0f}%/1ч")
+    avg_h = t["v24"] / 24 if t["v24"] > 0 else 0
+    acc = t["v1"] / avg_h if avg_h > 0 else (2.0 if t["v1"] > 0 else 0)
     if acc > 0: s += clip(math.log2(acc), -2, 3) * 10
-    if acc >= 1.8: reasons.append(f"объём x{acc:.1f} к среднему")
-    # 3) buy pressure and breadth
-    tot = buys + sells
-    ratio = buys / tot if tot else 0.5
+    if acc >= 1.8: reasons.append(f"объём x{acc:.1f}")
+    tot = t["buys"] + t["sells"]
+    ratio = t["buys"] / tot if tot else 0.5
     s += (ratio - 0.5) * 60 * min(1.0, tot / 30)
-    s += math.log10(buyers + 1) * 5
+    s += math.log10(t["buyers"] + 1) * 5
     if ratio >= 0.65 and tot >= 20: reasons.append(f"покупок {ratio*100:.0f}%")
-    if buyers >= 50: reasons.append(f"{buyers} покупателей/ч")
-    # 4) liquidity depth
-    s += clip(math.log10(liq / MIN_LIQ) * 5, 0, 10)
-    # red flags
-    fdv_liq = fdv / liq if liq and fdv else 0
-    if fdv_liq > 300: s -= 30; flags.append("FDV/ликв >300")
-    elif fdv_liq > 100: s -= 15; flags.append("FDV/ликв >100")
-    if tot >= 20 and ratio < 0.35: s -= 15; flags.append("сильные продажи")
-    if age_h is not None and age_h < 6: s -= 5; flags.append(f"пул новый ({age_h:.0f}ч)")
-    if h24 > 300: s -= 10; flags.append("уже +300%/24ч")
-    if v1 < 500: s -= 10; flags.append("слабый объём")
-    if liq < 25_000: flags.append("малая ликвидность")
-    risk = "🔴 высокий" if len(flags) >= 2 or (age_h is not None and age_h < 24) or liq < 25_000 else ("🟡 средний" if flags or liq < 100_000 else "🟢 умеренный")
-    addr = base_id.split("_", 1)[-1]
-    return {
-        "sym": sym, "name": tok.get("name") or sym, "addr": addr, "pool": a.get("address", ""),
-        "price": f(a.get("base_token_price_usd")), "m5": m5, "h1": h1, "h24": h24, "v1": v1,
-        "liq": liq, "buys": buys, "sells": sells, "score": s, "reasons": reasons, "flags": flags,
-        "risk": risk, "dex": (rel.get("dex", {}).get("data") or {}).get("id", ""), "quote": quote_id,
-    }
+    s += clip(math.log10(t["liq"] / MIN_LIQ) * 5, 0, 10)
+    fl = t["fdv"] / t["liq"] if t["liq"] and t["fdv"] else 0
+    if fl > 300: s -= 30; flags.append("FDV≫ликв"); severe = True
+    elif fl > 100: s -= 15; flags.append("FDV/ликв>100")
+    if tot >= 20 and ratio < 0.35: s -= 15; flags.append("сливают"); severe = True
+    if t["age_h"] is not None and t["age_h"] < 6: s -= 5; flags.append(f"новый {t['age_h']:.0f}ч")
+    if t["h24"] > 300: s -= 10; flags.append("уже +300%")
+    if t["v1"] < 500: s -= 10; flags.append("мало объёма")
+    if t["liq"] < 25_000: flags.append("мелкая ликв")
+    risk = "🔴" if len(flags) >= 2 or (t["age_h"] is not None and t["age_h"] < 24) or t["liq"] < 25_000 else ("🟡" if flags or t["liq"] < 100_000 else "🟢")
+    t.update(score=s, reasons=reasons, flags=flags, severe=severe, risk=risk)
+    return t
+
+
+def bucket(s):
+    for lo, hi, name in BUCKETS:
+        if lo <= s < hi: return name
+    return "<10"
+
+
+def success(t, hist):
+    """Historical hit rate per score bucket, else conservative heuristic capped at 60%."""
+    b = bucket(t["score"])
+    st = hist.get("stats", {}).get(b, {"n": 0, "hits": 0})
+    if st["n"] >= MIN_SAMPLES:
+        return round(100 * st["hits"] / st["n"]), f"n={st['n']}"
+    p = HEUR[b] - 5 * len(t["flags"]) - (10 if t["severe"] else 0)
+    return int(clip(p, 3, 60)), "оценка"
+
+
+def verdict(t, pct):
+    if t["severe"] or t["score"] < 10 or t["risk"] == "🔴" and pct < 25:
+        return "❌ не входить"
+    if t["score"] >= 25 and pct >= 35 and t["h1"] > 0 and t["risk"] != "🔴":
+        return "✅ стоит посмотреть"
+    return "⚠️ рискованно"
+
+
+def token_prices(addrs):
+    out = {}
+    for i in range(0, len(addrs), 30):
+        chunk = addrs[i:i + 30]
+        try:
+            d = get(f"{GT}/simple/networks/ton/token_price/{','.join(chunk)}")
+            for k, v in (d["data"]["attributes"]["token_prices"] or {}).items():
+                if v: out[k] = f(v); out[k.lower()] = f(v)
+        except Exception as ex:
+            errors.append(f"prices: {type(ex).__name__}")
+        time.sleep(2.2)
+    return out
 
 
 def ton_price(pools):
@@ -131,92 +174,176 @@ def ton_price(pools):
         d = get(f"{GT}/simple/networks/ton/token_price/{TON_ADDR}")
         v = d["data"]["attributes"]["token_prices"].get(TON_ADDR)
         if v: return f(v)
-    except Exception as e:
-        errors.append(f"TON price: {type(e).__name__}")
+    except Exception as ex:
+        errors.append(f"TON: {type(ex).__name__}")
     for p in pools.values():
-        a = p.get("attributes", {})
         q = (p.get("relationships", {}).get("quote_token", {}).get("data") or {}).get("id", "")
-        if q.endswith(TON_ADDR) and a.get("quote_token_price_usd"):
-            return f(a["quote_token_price_usd"])
+        if q.endswith(TON_ADDR) and p["attributes"].get("quote_token_price_usd"):
+            return f(p["attributes"]["quote_token_price_usd"])
     return None
 
 
-def news():
-    feeds = ["https://cointelegraph.com/rss", "https://www.coindesk.com/arc/outboundfeeds/rss/"]
+def news(n=2):
     items = []
-    for u in feeds:
+    for u in ["https://cointelegraph.com/rss", "https://www.coindesk.com/arc/outboundfeeds/rss/"]:
         try:
             root = ET.fromstring(get(u, accept_json=False))
             for it in root.iter("item"):
                 t, l = (it.findtext("title") or "").strip(), (it.findtext("link") or "").strip().split("?utm_")[0]
                 if t and l: items.append((t, l))
-        except Exception as e:
-            errors.append(f"RSS {u.split('/')[2]}: {type(e).__name__}")
+        except Exception as ex:
+            errors.append(f"RSS {u.split('/')[2]}: {type(ex).__name__}")
     rx = re.compile(r"\b(TON|Toncoin|Telegram|Durov|STON|Notcoin|Tonkeeper)\b", re.I)
     ton = [i for i in items if rx.search(i[0])]
-    rest = [i for i in items if i not in ton]
-    seen, out = set(), []
-    for t, l in ton + rest:
-        if t in seen: continue
-        seen.add(t); out.append((t, l))
-        if len(out) >= 3: break
-    return out, len(ton)
+    out, seen = [], set()
+    for t, l in ton + [i for i in items if i not in ton]:
+        if t not in seen:
+            seen.add(t); out.append((t, l))
+        if len(out) >= n: break
+    return out, bool(ton)
 
 
 def money(x):
-    if x >= 1e6: return f"${x/1e6:.2f}M"
-    if x >= 1e3: return f"${x/1e3:.1f}k"
+    if x >= 1e6: return f"${x/1e6:.1f}M"
+    if x >= 1e3: return f"${x/1e3:.0f}k"
     return f"${x:.0f}"
 
 
-def price_fmt(x):
-    if x >= 1: return f"${x:,.3f}"
-    if x == 0: return "$0"
-    return f"${x:.{max(2, -int(math.floor(math.log10(x))) + 3)}f}"
+def pfmt(x):
+    if not x: return "$0"
+    if x >= 1: return f"${x:,.2f}"
+    return f"${x:.{max(2, -int(math.floor(math.log10(x))) + 2)}f}"
 
 
-def build(top, tp, nws, ton_news_n, n_pools):
-    e = html.escape
-    now = datetime.now(KYIV).strftime("%d.%m %H:%M")
-    L = [f"<b>📊 TON-монеты: отчёт {now} (Киев)</b>"]
-    L.append(f"TON: <b>{price_fmt(tp)}</b>" if tp else "TON: н/д")
-    L.append(f"Проанализировано пулов: {n_pools}\n")
-    if not top:
-        L.append("Подходящих монет сейчас нет (или API недоступно).")
-    for i, t in enumerate(top, 1):
-        why = ", ".join(t["reasons"]) or "умеренный импульс"
-        fl = ("\n⚠️ " + ", ".join(t["flags"])) if t["flags"] else ""
-        L.append(
-            f"<b>{i}. {e(t['sym'])}</b> ({e(t['name'][:30])}) — скор <b>{t['score']:.0f}</b>\n"
-            f"💵 {price_fmt(t['price'])} | 5м {t['m5']:+.1f}% | 1ч {t['h1']:+.1f}% | 24ч {t['h24']:+.1f}%\n"
-            f"📈 объём 1ч {money(t['v1'])} | ликв. {money(t['liq'])} | 🟩{t['buys']}/🟥{t['sells']}\n"
-            f"💡 {e(why)}{e(fl)}\nРиск: {t['risk']}\n"
-            f"<a href=\"https://dexscreener.com/ton/{t['pool']}\">DexScreener</a> · "
-            f"<a href=\"https://www.geckoterminal.com/ton/pools/{t['pool']}\">GeckoTerminal</a> · "
-            f"<a href=\"https://app.ston.fi/swap?ft=TON&amp;tt={t['addr']}\">STON.fi</a>\n")
-    if nws:
-        L.append("<b>📰 Новости</b>" + ("" if ton_news_n else " (о TON свежих нет, общие крипто)"))
-        for t, l in nws:
-            L.append(f"• <a href=\"{e(l)}\">{e(t[:140])}</a>")
-        L.append("")
-    if errors:
-        L.append("<i>Частичные данные: " + e("; ".join(errors[:4])) + "</i>")
-    L.append("<i>Это эвристика по рыночным данным, не гарантия и не финсовет. Мемкоины могут обнулиться.</i>")
-    msg = "\n".join(L)
-    return msg[:4000]
+def links(t):
+    return (f"<a href=\"https://dexscreener.com/ton/{t['pool']}\">DS</a>·"
+            f"<a href=\"https://app.ston.fi/swap?ft=TON&amp;tt={t['addr']}\">STON</a>")
 
 
-def load_state():
+def short(s, n):
+    return s if len(s) <= n else s[:n - 1] + "…"
+
+
+# ---------------- history / calibration ----------------
+def load_hist():
     try:
-        with open(STATE_FILE) as fh: return json.load(fh)
-    except Exception: return {"chat_ids": [], "last_update_id": 0}
+        with open(HIST) as fh: return json.load(fh)
+    except Exception:
+        return {"signals": [], "stats": {}}
 
 
-def tg(token, method, payload):
+def update_hist(hist, best, now):
+    """Fill 1h/6h/24h prices of logged signals; finalize 6h outcome into per-bucket stats."""
+    open_sig = [s for s in hist["signals"] if not s.get("closed")]
+    if not open_sig: return
+    cur = {a: t["price"] for a, t in best.items()}
+    missing = sorted({s["addr"] for s in open_sig if s["addr"] not in cur})
+    cur.update(token_prices(missing))
+    for s in open_sig:
+        age = (now - datetime.fromisoformat(s["t"])).total_seconds() / 3600
+        p = cur.get(s["addr"]) or cur.get(s["addr"].lower())
+        if p and age <= 6.25:
+            s["max6"] = max(s.get("max6", s["p0"]), p)
+        if p and age >= 1 and "p1" not in s: s["p1"] = p
+        if age >= 6 and not s.get("done6"):
+            if p: s["p6"] = p
+            s["done6"] = True
+            hit = s.get("max6", s["p0"]) >= s["p0"] * (1 + HIT_PCT / 100)
+            st = hist["stats"].setdefault(s["b"], {"n": 0, "hits": 0})
+            st["n"] += 1; st["hits"] += int(hit); s["hit"] = hit
+        if age >= 24:
+            if p: s["p24"] = p
+            s["closed"] = True
+    cutoff = now - timedelta(days=3)
+    hist["signals"] = [s for s in hist["signals"] if not s.get("closed") or datetime.fromisoformat(s["t"]) > cutoff]
+
+
+def log_signals(hist, top, now):
+    recent = {s["addr"] for s in hist["signals"] if (now - datetime.fromisoformat(s["t"])) < timedelta(hours=6)}
+    for t in top:
+        if t["addr"] in recent or not t["price"]: continue  # one sample per coin per 6h (avoid correlated duplicates)
+        hist["signals"].append({"t": now.isoformat(timespec="seconds"), "sym": t["sym"], "addr": t["addr"],
+                                "p0": t["price"], "score": round(t["score"], 1), "b": bucket(t["score"]), "v": t["verdict"]})
+
+
+# ---------------- messages ----------------
+def build_report(log=False):
+    now = datetime.now(timezone.utc)
+    hist = load_hist()
+    pools, tokens = fetch_pools()
+    best = best_by_token(pools, tokens, now)
+    if log:
+        try: update_hist(hist, best, now)
+        except Exception as ex: errors.append(f"history: {type(ex).__name__}")
+    top = sorted((score(t) for t in best.values()), key=lambda x: x["score"], reverse=True)[:5]
+    tp = ton_price(pools)
+    nws, ton_news = news(2)
+    L = [f"<b>📊 TON {pfmt(tp) if tp else 'н/д'}</b> · {datetime.now(KYIV):%d.%m %H:%M} Киев"]
+    if not top: L.append("Подходящих монет нет (или API недоступно).")
+    for i, t in enumerate(top, 1):
+        pct, how = success(t, hist)
+        t["verdict"] = verdict(t, pct)
+        L.append(f"{i}. <b>{e(short(t['sym'], 10))}</b> {pfmt(t['price'])} · 1ч {t['h1']:+.1f}% · V {money(t['v1'])} · L {money(t['liq'])}")
+        L.append(f"   {t['verdict']} · {pct}% ({how}) · {t['risk']} {links(t)}")
+    if nws:
+        L.append("📰 " + ("" if ton_news else "<i>(о TON нет)</i>"))
+        for title, l in nws:
+            L.append(f"• <a href=\"{e(l)}\">{e(short(title, 60))}</a>")
+    if errors: L.append("<i>⚠ частично: " + e("; ".join(errors[:3])) + "</i>")
+    L.append("<i>% — оценка по истории сигналов, не гарантия</i>")
+    if log:
+        log_signals(hist, top, now)
+        hist["keepalive_day"] = now.strftime("%Y-%m-%d"); hist["last_run"] = now.isoformat(timespec="seconds")
+        with open(HIST, "w") as fh: json.dump(hist, fh, indent=0, ensure_ascii=False)
+    return "\n".join(L)[:4000]
+
+
+def change_7d(pool):
+    d = get(f"{GT}/networks/ton/pools/{pool}/ohlcv/day?limit=8&currency=usd")
+    ol = d["data"]["attributes"]["ohlcv_list"]  # newest first: [ts,o,h,l,c,v]
+    if len(ol) < 2: return None
+    old = ol[7][4] if len(ol) >= 8 else ol[-1][1]
+    return (ol[0][4] / old - 1) * 100 if old else None
+
+
+def movers(direction, period):
+    now = datetime.now(timezone.utc)
+    pools, tokens = fetch_pools()
+    best = [t for t in best_by_token(pools, tokens, now).values() if t["v24"] >= 1000]
+    if period == "7d":
+        cands = sorted(best, key=lambda t: t["v24"] + t["liq"] * 0.2, reverse=True)[:40]
+        for t in cands:
+            try: t["ch"] = change_7d(t["pool"])
+            except Exception: t["ch"] = None
+            time.sleep(2.1)
+        best = [t for t in cands if t.get("ch") is not None]
+    else:
+        for t in best: t["ch"] = t["h1"] if period == "1h" else t["h24"]
+    best.sort(key=lambda t: t["ch"], reverse=(direction == "gainers"))
+    title = {"gainers": "🚀 Выросли", "losers": "📉 Упали"}[direction]
+    per = {"1h": "1ч", "24h": "24ч", "7d": "7д"}[period]
+    L = [f"<b>{title} за {per}</b> (TON, ликв ≥$10k)"]
+    for i, t in enumerate(best[:5], 1):
+        L.append(f"{i}. <b>{e(short(t['sym'], 10))}</b> {t['ch']:+.1f}% · {pfmt(t['price'])} · L {money(t['liq'])} {links(t)}")
+    if len(L) == 1: L.append("Нет данных (API недоступно).")
+    if period == "7d": L.append(f"<i>7д по дневным свечам, топ-{len(best)} пулов по объёму</i>")
+    if errors: L.append("<i>⚠ частично: " + e("; ".join(errors[:3])) + "</i>")
+    return "\n".join(L)
+
+
+HELP = ("<b>Команды</b>\n/report — отчёт сейчас\n/gainers_1h /gainers_24h /gainers_7d — топ-5 выросших\n"
+        "/losers_1h /losers_24h /losers_7d — топ-5 упавших\n(можно и /gainers 24h)\nАвтоотчёт каждые 30 мин.")
+COMMANDS = [("report", "Отчёт сейчас"), ("gainers_1h", "Топ-5 роста за 1ч"), ("gainers_24h", "Топ-5 роста за 24ч"),
+            ("gainers_7d", "Топ-5 роста за 7д"), ("losers_1h", "Топ-5 падения за 1ч"), ("losers_24h", "Топ-5 падения за 24ч"),
+            ("losers_7d", "Топ-5 падения за 7д"), ("help", "Помощь")]
+
+
+# ---------------- telegram ----------------
+def tg(token, method, payload, timeout=30):
     req = urllib.request.Request(f"https://api.telegram.org/bot{token}/{method}",
                                  data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(req, timeout=30) as r: return json.loads(r.read())
+        with urllib.request.urlopen(req, timeout=timeout) as r: return json.loads(r.read())
     except urllib.error.HTTPError as ex:
         try: return json.loads(ex.read())
         except Exception: return {"ok": False, "description": f"HTTP {ex.code}"}
@@ -224,56 +351,76 @@ def tg(token, method, payload):
         return {"ok": False, "description": type(ex).__name__}
 
 
+def send(token, chat, msg):
+    r = tg(token, "sendMessage", {"chat_id": chat, "text": msg, "parse_mode": "HTML", "disable_web_page_preview": True})
+    if not r.get("ok"):
+        print(f"HTML send failed: {r.get('description')}")
+        r = tg(token, "sendMessage", {"chat_id": chat, "text": re.sub(r"<[^>]+>", "", html.unescape(msg)), "disable_web_page_preview": True})
+    print(f"send ok={r.get('ok')}")
+    return r.get("ok")
+
+
+def handle(token, chat, text):
+    cmd = text.strip().split()
+    if not cmd or not cmd[0].startswith("/"): return
+    c = cmd[0][1:].split("@")[0].lower()
+    arg = cmd[1].lower() if len(cmd) > 1 else ""
+    m = re.fullmatch(r"(gainers|losers)(?:_(1h|24h|7d))?", c)
+    del errors[:]
+    if m:
+        period = m.group(2) or {"1ч": "1h", "24ч": "24h", "7д": "7d", "1d": "24h", "d": "24h", "w": "7d"}.get(arg, arg) or "24h"
+        if period not in ("1h", "24h", "7d"): period = "24h"
+        if period == "7d": tg(token, "sendMessage", {"chat_id": chat, "text": "⏳ Считаю 7д (~2 мин)…"})
+        send(token, chat, movers(m.group(1), period))
+    elif c == "report":
+        send(token, chat, build_report(log=False))
+    elif c in ("help", "start"):
+        send(token, chat, HELP)
+    else:
+        send(token, chat, "Не знаю такую команду. " + HELP)
+
+
+def poll(token, owner, budget=240):
+    tg(token, "setMyCommands", {"commands": [{"command": a, "description": b} for a, b in COMMANDS]})
+    start, offset, handled = time.time(), None, 0
+    while time.time() - start < budget:
+        left = int(budget - (time.time() - start))
+        payload = {"timeout": max(1, min(50, left)), "allowed_updates": ["message"]}
+        if offset: payload["offset"] = offset
+        u = tg(token, "getUpdates", payload, timeout=60)
+        if not u.get("ok"):
+            print("getUpdates failed:", u.get("description")); time.sleep(5); continue
+        for up in u["result"]:
+            offset = up["update_id"] + 1
+            # confirm right away so a crash never replays a command
+            tg(token, "getUpdates", {"offset": offset, "timeout": 0, "limit": 1})
+            msg = up.get("message") or {}
+            if str((msg.get("chat") or {}).get("id")) != owner:
+                continue  # ignore everyone except the owner
+            try:
+                handle(token, owner, msg.get("text") or ""); handled += 1
+            except Exception as ex:
+                print("handler error:", type(ex).__name__)
+                send(token, owner, f"Ошибка: {e(type(ex).__name__)}")
+    print(f"poll done, handled={handled}")
+
+
 def main():
     token = os.environ.get("TG_BOT_TOKEN", "").strip()
+    chat = os.environ.get("TG_CHAT_ID", "").strip()
+    mode = sys.argv[1] if len(sys.argv) > 1 else "report"
     dry = "--dry" in sys.argv
-    state = load_state()
-    secret_ids = [c.strip() for c in os.environ.get("TG_CHAT_ID", "").split(",") if c.strip()]
-    if token and not dry:
-        # discover chats that pressed /start (only private chats); only used when no TG_CHAT_ID secret is set
-        u = tg(token, "getUpdates", {"offset": state.get("last_update_id", 0) + 1, "timeout": 0})
-        if u.get("ok"):
-            for up in u.get("result", []):
-                state["last_update_id"] = max(state.get("last_update_id", 0), up["update_id"])
-                chat = (up.get("message") or {}).get("chat") or {}
-                if chat.get("type") == "private" and not secret_ids and str(chat["id"]) not in state["chat_ids"]:
-                    state["chat_ids"].append(str(chat["id"]))
-    chats = secret_ids or state.get("chat_ids", [])
-
-    now = datetime.now(timezone.utc)
-    pools, tokens = fetch_pools()
-    best = {}
-    for p in pools.values():
-        try:
-            r = score_pool(p, tokens, now)
-        except Exception as ex:
-            errors.append(f"score: {type(ex).__name__}"); continue
-        if r and (r["addr"] not in best or r["liq"] > best[r["addr"]]["liq"]):
-            best[r["addr"]] = r
-    top = sorted(best.values(), key=lambda x: x["score"], reverse=True)[:5]
-    tp = ton_price(pools)
-    nws, ton_n = news()
-    msg = build(top, tp, nws, ton_n, len(pools))
-
-    state["last_run"] = now.isoformat(timespec="seconds")
-    state["keepalive_day"] = now.strftime("%Y-%m-%d")
-    with open(STATE_FILE, "w") as fh: json.dump(state, fh, indent=1)
-
-    if dry or not token:
+    if mode == "poll":
+        if not (token and chat): print("missing secrets"); return 1
+        poll(token, chat, int(os.environ.get("POLL_SECONDS", "240"))); return 0
+    if mode == "movers":
+        print(movers(sys.argv[2], sys.argv[3])); return 0
+    msg = build_report(log=not dry)
+    if dry or not (token and chat):
         print(msg); return 0
-    if not chats:
-        print("No chat id yet: press /start on the bot."); return 0
-    fails = 0
-    for c in chats:
-        r = tg(token, "sendMessage", {"chat_id": c, "text": msg, "parse_mode": "HTML", "disable_web_page_preview": True})
-        if not r.get("ok"):
-            r2 = tg(token, "sendMessage", {"chat_id": c, "text": re.sub(r"<[^>]+>", "", html.unescape(msg)), "disable_web_page_preview": True})
-            print(f"HTML send failed ({r.get('description')}); plain-text fallback ok={r2.get('ok')}")
-            if not r2.get("ok"): fails += 1
-        else:
-            print(f"sent ok to chat ...{str(c)[-3:]} (message_id {r['result']['message_id']})")
-    print(f"pools={len(pools)} candidates={len(best)} errors={errors}")
-    return 1 if fails == len(chats) else 0
+    ok = send(token, chat, msg)
+    print(f"errors={errors}")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
