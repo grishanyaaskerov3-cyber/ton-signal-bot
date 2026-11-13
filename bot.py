@@ -17,6 +17,7 @@ HIST = "history.json"
 KYIV = timezone(timedelta(hours=2))
 BUCKETS = [(-1e9, 10, "<10"), (10, 20, "10-20"), (20, 35, "20-35"), (35, 1e9, "35+")]
 HEUR = {"<10": 10, "10-20": 20, "20-35": 30, "35+": 40}  # conservative prior, % chance of >=+5% within 6h
+HEUR_DOWN = {"<10": 40, "10-20": 35, "20-35": 30, "35+": 25}  # prior, % chance of <=-5% within 6h
 MIN_SAMPLES = 20
 HIT_PCT = 5.0
 errors = []
@@ -138,21 +139,26 @@ def bucket(s):
 
 
 def success(t, hist):
-    """Historical hit rate per score bucket, else conservative heuristic capped at 60%."""
+    """(rost%, padenie%, calibrated). Historical rates per score bucket, else conservative heuristic."""
     b = bucket(t["score"])
-    st = hist.get("stats", {}).get(b, {"n": 0, "hits": 0})
-    if st["n"] >= MIN_SAMPLES:
-        return round(100 * st["hits"] / st["n"]), f"n={st['n']}"
-    p = HEUR[b] - 5 * len(t["flags"]) - (10 if t["severe"] else 0)
-    return int(clip(p, 3, 60)), "оценка"
+    st = hist.get("stats", {}).get(b, {})
+    if st.get("n", 0) >= MIN_SAMPLES:
+        return round(100 * st["hits"] / st["n"]), round(100 * st.get("downs", 0) / st["n"]), True
+    nf = len(t["flags"]) + (2 if t["severe"] else 0)
+    up = int(clip(HEUR[b] - 5 * nf, 3, 60))
+    down = int(clip(HEUR_DOWN[b] + 5 * nf, 5, 90))
+    return up, down, False
 
 
-def verdict(t, pct):
-    if t["severe"] or t["score"] < 10 or t["risk"] == "🔴" and pct < 25:
-        return "❌ не входить"
-    if t["score"] >= 25 and pct >= 35 and t["h1"] > 0 and t["risk"] != "🔴":
-        return "✅ стоит посмотреть"
-    return "⚠️ рискованно"
+def position(t, up, down, calibrated):
+    """Suggested max share of deposit, %. 0 = don't enter."""
+    if t["severe"] or t["risk"] == "🔴" or up <= down:
+        return 0
+    size = clip((up - down) / 5, 1, 5)
+    size = min(size, 1 if t["liq"] < 50_000 else 3 if t["liq"] < 200_000 else 5)
+    if not calibrated:
+        size = min(size, 2)  # no track record yet -> stay tiny
+    return int(round(size))
 
 
 def token_prices(addrs):
@@ -244,13 +250,16 @@ def update_hist(hist, best, now):
         p = cur.get(s["addr"]) or cur.get(s["addr"].lower())
         if p and age <= 6.25:
             s["max6"] = max(s.get("max6", s["p0"]), p)
+            s["min6"] = min(s.get("min6", s["p0"]), p)
         if p and age >= 1 and "p1" not in s: s["p1"] = p
         if age >= 6 and not s.get("done6"):
             if p: s["p6"] = p
             s["done6"] = True
             hit = s.get("max6", s["p0"]) >= s["p0"] * (1 + HIT_PCT / 100)
             st = hist["stats"].setdefault(s["b"], {"n": 0, "hits": 0})
-            st["n"] += 1; st["hits"] += int(hit); s["hit"] = hit
+            down = s.get("min6", s["p0"]) <= s["p0"] * (1 - HIT_PCT / 100)
+            st["n"] += 1; st["hits"] += int(hit); st["downs"] = st.get("downs", 0) + int(down)
+            s["hit"], s["down"] = hit, down
         if age >= 24:
             if p: s["p24"] = p
             s["closed"] = True
@@ -277,20 +286,17 @@ def build_report(log=False):
         except Exception as ex: errors.append(f"history: {type(ex).__name__}")
     top = sorted((score(t) for t in best.values()), key=lambda x: x["score"], reverse=True)[:5]
     tp = ton_price(pools)
-    nws, ton_news = news(2)
-    L = [f"<b>📊 TON {pfmt(tp) if tp else 'н/д'}</b> · {datetime.now(KYIV):%d.%m %H:%M} Киев"]
+    L = [f"<b>TON {pfmt(tp) if tp else 'н/д'}</b>"]
     if not top: L.append("Подходящих монет нет (или API недоступно).")
-    for i, t in enumerate(top, 1):
-        pct, how = success(t, hist)
-        t["verdict"] = verdict(t, pct)
-        L.append(f"{i}. <b>{e(short(t['sym'], 10))}</b> {pfmt(t['price'])} · 1ч {t['h1']:+.1f}% · V {money(t['v1'])} · L {money(t['liq'])}")
-        L.append(f"   {t['verdict']} · {pct}% ({how}) · {t['risk']} {links(t)}")
-    if nws:
-        L.append("📰 " + ("" if ton_news else "<i>(о TON нет)</i>"))
-        for title, l in nws:
-            L.append(f"• <a href=\"{e(l)}\">{e(short(title, 60))}</a>")
-    if errors: L.append("<i>⚠ частично: " + e("; ".join(errors[:3])) + "</i>")
-    L.append("<i>% — оценка по истории сигналов, не гарантия</i>")
+    for t in top:
+        up, down, cal = success(t, hist)
+        pos = position(t, up, down, cal)
+        t["verdict"] = f"buy{pos}" if pos else "no"
+        m = "" if cal else "~"
+        v = f"✅ вложить до {pos}% депозита" if pos else "❌ не вкладывать"
+        L.append(f"<a href=\"https://dexscreener.com/ton/{t['pool']}\">{e(short(t['sym'], 10))}</a> — рост {m}{up}% / падение {m}{down}% — {v}")
+    if errors: L.append("<i>⚠ частично: " + e("; ".join(errors[:2])) + "</i>")
+    L.append("<i>% — оценка, не гарантия</i>")
     if log:
         log_signals(hist, top, now)
         hist["keepalive_day"] = now.strftime("%Y-%m-%d"); hist["last_run"] = now.isoformat(timespec="seconds")
@@ -322,20 +328,20 @@ def movers(direction, period):
     best.sort(key=lambda t: t["ch"], reverse=(direction == "gainers"))
     title = {"gainers": "🚀 Выросли", "losers": "📉 Упали"}[direction]
     per = {"1h": "1ч", "24h": "24ч", "7d": "7д"}[period]
-    L = [f"<b>{title} за {per}</b> (TON, ликв ≥$10k)"]
-    for i, t in enumerate(best[:5], 1):
-        L.append(f"{i}. <b>{e(short(t['sym'], 10))}</b> {t['ch']:+.1f}% · {pfmt(t['price'])} · L {money(t['liq'])} {links(t)}")
+    L = [f"<b>{title} за {per}</b>"]
+    for t in best[:5]:
+        L.append(f"<a href=\"https://dexscreener.com/ton/{t['pool']}\">{e(short(t['sym'], 10))}</a> {t['ch']:+.1f}% · {pfmt(t['price'])}")
     if len(L) == 1: L.append("Нет данных (API недоступно).")
-    if period == "7d": L.append(f"<i>7д по дневным свечам, топ-{len(best)} пулов по объёму</i>")
+    if period == "7d": L.append(f"<i>по дневным свечам, топ-{len(best)} пулов</i>")
     if errors: L.append("<i>⚠ частично: " + e("; ".join(errors[:3])) + "</i>")
     return "\n".join(L)
 
 
 HELP = ("<b>Команды</b>\n/report — отчёт сейчас\n/gainers_1h /gainers_24h /gainers_7d — топ-5 выросших\n"
-        "/losers_1h /losers_24h /losers_7d — топ-5 упавших\n(можно и /gainers 24h)\nАвтоотчёт каждые 30 мин.")
+        "/losers_1h /losers_24h /losers_7d — топ-5 упавших\n/news — новости\n(можно и /gainers 24h)\nАвтоотчёт каждые 30 мин.")
 COMMANDS = [("report", "Отчёт сейчас"), ("gainers_1h", "Топ-5 роста за 1ч"), ("gainers_24h", "Топ-5 роста за 24ч"),
             ("gainers_7d", "Топ-5 роста за 7д"), ("losers_1h", "Топ-5 падения за 1ч"), ("losers_24h", "Топ-5 падения за 24ч"),
-            ("losers_7d", "Топ-5 падения за 7д"), ("help", "Помощь")]
+            ("losers_7d", "Топ-5 падения за 7д"), ("news", "Крипто-новости"), ("help", "Помощь")]
 
 
 # ---------------- telegram ----------------
@@ -380,6 +386,9 @@ def handle(token, chat, text):
         send(token, chat, movers(m.group(1), period))
     elif c == "report":
         send(token, chat, build_report(log=False))
+    elif c == "news":
+        nws, _ = news(3)
+        send(token, chat, "\n".join(f"• <a href=\"{e(l)}\">{e(short(t, 80))}</a>" for t, l in nws) or "Новости недоступны.")
     elif c in ("help", "start"):
         send(token, chat, HELP)
     else:
