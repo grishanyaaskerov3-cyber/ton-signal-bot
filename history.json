@@ -1,0 +1,52 @@
+{
+"signals": [
+{
+"t": "2026-11-13T14:36:08+00:00",
+"sym": "PX",
+"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
+"p0": 0.00937621568936906,
+"score": 27.6,
+"b": "20-35",
+"v": "⚠️ рискованно"
+},
+{
+"t": "2026-11-13T14:36:08+00:00",
+"sym": "Yoda",
+"addr": "EQC7vuKEYLdC72YhUWt3AUVA-Oi66Q1DxTHXH7r6pXaV50j7",
+"p0": 0.000474143868106882,
+"score": 19.5,
+"b": "10-20",
+"v": "⚠️ рискованно"
+},
+{
+"t": "2026-11-13T14:36:08+00:00",
+"sym": "STORM",
+"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
+"p0": 0.0041008825562611,
+"score": 17.1,
+"b": "10-20",
+"v": "⚠️ рискованно"
+},
+{
+"t": "2026-11-13T14:36:08+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.040993496100801,
+"score": 15.3,
+"b": "10-20",
+"v": "⚠️ рискованно"
+},
+{
+"t": "2026-11-13T14:36:08+00:00",
+"sym": "UTYA",
+"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
+"p0": 0.0228399030505687,
+"score": 8.4,
+"b": "<10",
+"v": "❌ не входить"
+}
+],
+"stats": {},
+"keepalive_day": "2026-11-13",
+"last_run": "2026-11-13T14:36:08+00:00"
+}
