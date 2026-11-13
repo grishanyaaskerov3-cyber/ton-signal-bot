@@ -360,10 +360,16 @@ def send(token, chat, msg):
     return r.get("ok")
 
 
+def arg_safe(cmd):
+    return re.sub(r"[^a-z0-9]", "", cmd[1].lower())[:5] if len(cmd) > 1 else ""
+
+
 def handle(token, chat, text):
     cmd = text.strip().split()
-    if not cmd or not cmd[0].startswith("/"): return
+    if not cmd or not cmd[0].startswith("/"):
+        print("non-command message ignored"); return
     c = cmd[0][1:].split("@")[0].lower()
+    print(f"command: /{c[:20]} {arg_safe(cmd)}")
     arg = cmd[1].lower() if len(cmd) > 1 else ""
     m = re.fullmatch(r"(gainers|losers)(?:_(1h|24h|7d))?", c)
     del errors[:]

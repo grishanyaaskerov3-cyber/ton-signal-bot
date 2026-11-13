@@ -22,4 +22,4 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           POLL_SECONDS: '240'
-        run: python3 bot.py poll
+        run: python3 -u bot.py poll
