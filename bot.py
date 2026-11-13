@@ -33,7 +33,7 @@ def get(url, accept_json=True, retries=3, timeout=25):
             return json.loads(data) if accept_json else data
         except urllib.error.HTTPError as ex:
             if ex.code == 429:
-                time.sleep(15 * (i + 1)); continue
+                print(f"429 from {url.split('/')[2]}, backing off"); time.sleep(12 * (i + 1)); continue
             if i == retries - 1: raise
             time.sleep(3)
         except Exception:
@@ -104,18 +104,22 @@ def fetch_pools(detail=150):
             tokens[t["id"]] = t.get("attributes", {})
         for p in d.get("data", []) or []:
             pools[p["id"]] = p
+    t0 = time.time()
     for ep in eps:
         try: take(get(f"{GT}/networks/ton/{ep}"))
         except Exception as ex: errors.append(f"GT {ep.split('?')[0]}: {type(ex).__name__}")
         time.sleep(2.1)  # free API ~30 req/min
+    print(f"[t] GT pages {time.time()-t0:.0f}s"); t0 = time.time()
     tonp = gt_ton_price()
     cands, scanned = universe(tonp)
+    print(f"[t] universe {time.time()-t0:.0f}s"); t0 = time.time()
     known = {p["attributes"].get("address") for p in pools.values()}
     extra = [a for a in cands if a not in known][:detail]
     for i in range(0, len(extra), 30):  # detailed stats for top pre-filtered candidates
         try: take(get(f"{GT}/networks/ton/pools/multi/{','.join(extra[i:i + 30])}?include=base_token"))
         except Exception as ex: errors.append(f"GT multi: {type(ex).__name__}")
         time.sleep(2.1)
+    print(f"[t] multi {time.time()-t0:.0f}s, pools={len(pools)}")
     stats = {"scanned": max(scanned, len(pools)), "prefiltered": len(set(cands) | known), "detailed": len(pools), "tonp": tonp}
     return pools, tokens, stats
 
@@ -407,12 +411,16 @@ def tg(token, method, payload, timeout=30):
         try: return json.loads(ex.read())
         except Exception: return {"ok": False, "description": f"HTTP {ex.code}"}
     except Exception as ex:
-        return {"ok": False, "description": type(ex).__name__}
+        return {"ok": False, "net": True, "description": type(ex).__name__}
 
 
 def send(token, chat, msg):
     r = tg(token, "sendMessage", {"chat_id": chat, "text": msg, "parse_mode": "HTML", "disable_web_page_preview": True})
-    if not r.get("ok"):
+    if not r.get("ok") and r.get("net"):
+        # network error: the message may have been delivered anyway -> one retry after a pause, no duplicate fallback
+        print(f"send network error: {r.get('description')}, retrying once"); time.sleep(5)
+        r = tg(token, "sendMessage", {"chat_id": chat, "text": msg, "parse_mode": "HTML", "disable_web_page_preview": True})
+    if not r.get("ok") and not r.get("net"):
         print(f"HTML send failed: {r.get('description')}")
         r = tg(token, "sendMessage", {"chat_id": chat, "text": re.sub(r"<[^>]+>", "", html.unescape(msg)), "disable_web_page_preview": True})
     print(f"send ok={r.get('ok')}")
