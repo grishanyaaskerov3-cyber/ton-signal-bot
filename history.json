@@ -1,214 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "GOMINE",
-"addr": "EQBaSm1kTmke7SD5QNlTGi1qPM8_5lfEhNjk7aB5hJ6w9z0v",
-"p0": 0.000984,
-"score": 21.5,
-"b": "20-35",
-"v": "no",
-"p1": 0.0009643,
-"p6": 0.0009643,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.001006,
-"closed": true
-},
-{
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "GROYP",
-"addr": "EQAtwo6qMNwtr0iTA9eKVZ32cuACFJ0VKd78GrBWOe83-X1P",
-"p0": 0.02879,
-"score": 8.9,
-"b": "<10",
-"v": "no",
-"p1": 0.02948,
-"p6": 0.02948,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02719,
-"closed": true
-},
-{
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "TAC",
-"addr": "EQBE_gBrU3mPI9hHjlJoR_kYyrhQgyCFD6EUWfa42W8T7EBP",
-"p0": 0.001243,
-"score": 8.5,
-"b": "<10",
-"v": "no",
-"p1": 0.001309,
-"p6": 0.001309,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.00103,
-"closed": true
-},
-{
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "MITTENS",
-"addr": "EQBwy-wJ-wCqh0mfJHoWjmulJ0oIRKEJJt75ULyrJNPcnn5z",
-"p0": 0.0001321,
-"score": 0.8,
-"b": "<10",
-"v": "no",
-"p1": 0.0001327,
-"p6": 0.0001327,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0001277,
-"closed": true
-},
-{
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "ANON",
-"addr": "EQDv-yr41_CZ2urg2gfegVfa44PDPjIK9F-MilEDKDUIhlwZ",
-"p0": 0.0003421,
-"score": 0.0,
-"b": "<10",
-"v": "no",
-"p1": 0.0003407,
-"p6": 0.0003407,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.000333,
-"closed": true
-},
-{
-"t": "2026-11-14T01:40:21+00:00",
-"sym": "GEMSTON",
-"addr": "EQBX6K9aXVl3nXINCyPPL86C4ONVmQ8vK360u6dykFKXpHCa",
-"p0": 0.08821,
-"score": -3.6,
-"b": "<10",
-"v": "no",
-"p1": 0.08763,
-"p6": 0.08763,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.08712,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "LOOT",
-"addr": "EQCM4DEzDVFLq7kaSodQX-8-u_aF9M9DDe1EePWsuMozqGkt",
-"p0": 0.000314,
-"score": 66.6,
-"b": "35+",
-"v": "no",
-"p1": 0.0003216,
-"p6": 0.0003216,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0004948,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "BUYT",
-"addr": "EQCWibYIG72ifoJlXD39iXia-frDwTvA0aeL7-pmmgvj3dwf",
-"p0": 0.0001178,
-"score": 32.4,
-"b": "20-35",
-"v": "no",
-"p1": 0.0001382,
-"p6": 0.0001382,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0001199,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "STORM",
-"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
-"p0": 0.003851,
-"score": 25.0,
-"b": "20-35",
-"v": "no",
-"p1": 0.00372,
-"p6": 0.00372,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003189,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "X",
-"addr": "EQB4zZusHsbU2vVTPqjhlokIOoiZhEdCMT703CWEzhTOo__X",
-"p0": 4.452e-06,
-"score": 23.7,
-"b": "20-35",
-"v": "no",
-"p1": 4.463e-06,
-"p6": 4.463e-06,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 4.336e-06,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "AVTOP",
-"addr": "EQAhZDXKDDqF2bFuWAGly5FxfgVthjOKfvbyTfzTvK8yhIUb",
-"p0": 0.0005109,
-"score": 16.4,
-"b": "10-20",
-"v": "no",
-"p1": 0.0005094,
-"p6": 0.0005094,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0004821,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "FRT",
-"addr": "EQA1EIDrR33zgL21rwDIfGo7h4ETWieentUvg7jIT-3aP5GG",
-"p0": 2.1,
-"score": 12.4,
-"b": "10-20",
-"v": "no",
-"p1": 2.031,
-"p6": 2.031,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 2.014,
-"closed": true
-},
-{
-"t": "2026-11-14T08:51:33+00:00",
-"sym": "ENA",
-"addr": "EQAFhZFZYye0llsl785OzOJG9QT6PXyYUdmiC4U95lBuHh1S",
-"p0": 0.1286,
-"score": 8.3,
-"b": "<10",
-"v": "no",
-"p1": 0.1282,
-"p6": 0.1282,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.1203,
-"closed": true
-},
-{
 "t": "2026-11-14T15:42:48+00:00",
 "sym": "DRAM",
 "addr": "EQAmWEVr6CDqlGmZ6FTaU-xn8urxkTwrKAcvxUt-Gbr5yEDj",
@@ -1008,7 +800,9 @@
 "p6": 0.0004783,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.000444,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1022,7 +816,9 @@
 "p6": 0.04289,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0394,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1036,7 +832,9 @@
 "p6": 0.0009451,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.001041,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1050,7 +848,9 @@
 "p6": 2.2,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 2.069,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1064,7 +864,9 @@
 "p6": 1.86,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.89,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1078,7 +880,9 @@
 "p6": 125.89,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 124.76,
+"closed": true
 },
 {
 "t": "2026-11-16T07:09:44+00:00",
@@ -1092,7 +896,9 @@
 "p6": 0.004004,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.004046,
+"closed": true
 },
 {
 "t": "2026-11-16T17:21:00+00:00",
@@ -1199,7 +1005,12 @@
 "p0": 4.79e-05,
 "score": 27.8,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 4.79e-05,
+"p6": 4.79e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1208,7 +1019,12 @@
 "p0": 0.02957,
 "score": 22.3,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.03019,
+"p6": 0.03019,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1217,7 +1033,12 @@
 "p0": 0.0002419,
 "score": 17.2,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 0.0002412,
+"p6": 0.0002412,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1226,7 +1047,12 @@
 "p0": 0.001213,
 "score": 14.1,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.001198,
+"p6": 0.001198,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1235,7 +1061,12 @@
 "p0": 0.01921,
 "score": 1.1,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.01905,
+"p6": 0.01905,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1244,7 +1075,12 @@
 "p0": 0.0003566,
 "score": -0.3,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.0003529,
+"p6": 0.0003529,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-17T00:59:39+00:00",
@@ -1253,22 +1089,90 @@
 "p0": 0.003047,
 "score": -2.1,
 "b": "<10",
+"v": "no",
+"p1": 0.002997,
+"p6": 0.002997,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "UTYAN",
+"addr": "EQAcgSTtV4lVHTcYYZafhyulD5gb6hhzSRwcDRKqCUGYwtve",
+"p0": 0.0009036,
+"score": 36.9,
+"b": "35+",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "PIRATE",
+"addr": "EQDCb2loMIB8YS53GEo2r2ggS9AW1Dz-zX_as4DtxXV1u8XY",
+"p0": 0.01756,
+"score": 31.5,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "ATF",
+"addr": "EQANcW45W0Tp91bzvHayaPO6-6hf1Lm4XlWZ4rN6L5ofPWdb",
+"p0": 0.0001418,
+"score": 30.6,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "MTONGA",
+"addr": "EQDuGgqZU7_AEgiOwEe-abozIefuoairTWLOyd7c_f8GhzMf",
+"p0": 0.004046,
+"score": 30.5,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "TCAT",
+"addr": "EQBtDmYgCKk3ecQ1x-j0CLZRnPYyaV7cB33ad036QN-HE2C7",
+"p0": 7.995e-05,
+"score": 16.0,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "VIRUS",
+"addr": "EQC7zE2BVcLiybBMuQ1giOPYmO4Ji88J12r7duqMJWOtFxtr",
+"p0": 1.186e-05,
+"score": 9.2,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-17T08:59:00+00:00",
+"sym": "PLUSHPEPE",
+"addr": "EQCQUbMUqcm6NYr6QdfIl3R3SE28wUpoX51Za604x9BSbA6y",
+"p0": 0.0001814,
+"score": 4.8,
+"b": "<10",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 40,
+"n": 42,
 "hits": 0,
 "downs": 2
 },
 "10-20": {
-"n": 22,
+"n": 24,
 "hits": 1,
 "downs": 0
 },
 "<10": {
-"n": 20,
+"n": 23,
 "hits": 0,
 "downs": 0
 },
@@ -1279,5 +1183,5 @@
 }
 },
 "keepalive_day": "2026-11-17",
-"last_run": "2026-11-17T00:59:39+00:00"
+"last_run": "2026-11-17T08:59:00+00:00"
 }
