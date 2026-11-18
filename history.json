@@ -1,132 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "PLUSHPEPE",
-"addr": "EQCQUbMUqcm6NYr6QdfIl3R3SE28wUpoX51Za604x9BSbA6y",
-"p0": 0.0002122,
-"score": 27.1,
-"b": "20-35",
-"v": "no",
-"max6": 0.0002122,
-"min6": 0.0001855,
-"p1": 0.0001855,
-"p6": 0.0001837,
-"done6": true,
-"hit": false,
-"down": true,
-"p24": 0.0001821,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "VICX",
-"addr": "EQDjplkzqXteTgrRYt7XtvXxoT-csLxhKtCbsGZmDAtmD4Ya",
-"p0": 0.001628,
-"score": 25.8,
-"b": "20-35",
-"v": "no",
-"max6": 0.001628,
-"min6": 0.001496,
-"p1": 0.001496,
-"p6": 0.00148,
-"done6": true,
-"hit": false,
-"down": true,
-"p24": 0.001586,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "OPEN",
-"addr": "EQB0apV-NyCYJDVwSBoDL86Xjp0OiwcyD8jJ0J5BVWnnDJu7",
-"p0": 4.787e-05,
-"score": 24.3,
-"b": "20-35",
-"v": "no",
-"max6": 4.802e-05,
-"min6": 4.787e-05,
-"p1": 4.802e-05,
-"p6": 4.802e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 4.76e-05,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "GRM",
-"addr": "EQC47093oX5Xhb0xuk2lCr2RhS8rj-vul61u4W2UH5ORmG_O",
-"p0": 0.0004609,
-"score": 18.3,
-"b": "10-20",
-"v": "no",
-"max6": 0.0004635,
-"min6": 0.0004609,
-"p1": 0.0004635,
-"p6": 0.0004681,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0004931,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "TAC",
-"addr": "EQBE_gBrU3mPI9hHjlJoR_kYyrhQgyCFD6EUWfa42W8T7EBP",
-"p0": 0.001195,
-"score": 16.8,
-"b": "10-20",
-"v": "no",
-"max6": 0.001301,
-"min6": 0.001195,
-"p1": 0.001301,
-"p6": 0.001363,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 0.001329,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "STORM",
-"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
-"p0": 0.003189,
-"score": 14.0,
-"b": "10-20",
-"v": "no",
-"max6": 0.003305,
-"min6": 0.003189,
-"p1": 0.003305,
-"p6": 0.003322,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003075,
-"closed": true
-},
-{
-"t": "2026-11-15T14:40:32+00:00",
-"sym": "CATS",
-"addr": "EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C",
-"p0": 1.85e-05,
-"score": -3.2,
-"b": "<10",
-"v": "no",
-"max6": 1.85e-05,
-"min6": 1.85e-05,
-"p1": 1.85e-05,
-"p6": 1.85e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.86015867387117e-05,
-"closed": true
-},
-{
 "t": "2026-11-15T20:16:54+00:00",
 "sym": "STON",
 "addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
@@ -997,7 +871,12 @@
 "p0": 0.003192,
 "score": 15.9,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.002933,
+"p6": 0.002933,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1006,7 +885,12 @@
 "p0": 121.9,
 "score": 6.7,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 120.84,
+"p6": 120.84,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1015,7 +899,12 @@
 "p0": 6.334e-05,
 "score": 6.0,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 6.098e-05,
+"p6": 6.098e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1024,7 +913,12 @@
 "p0": 0.003849,
 "score": 5.0,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.003687,
+"p6": 0.003687,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1033,7 +927,12 @@
 "p0": 2.14,
 "score": 3.6,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 2.036,
+"p6": 2.036,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1042,7 +941,12 @@
 "p0": 0.0005475,
 "score": 3.1,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.0005083,
+"p6": 0.0005083,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T09:00:12+00:00",
@@ -1051,6 +955,74 @@
 "p0": 0.08838,
 "score": 1.6,
 "b": "<10",
+"v": "no",
+"p1": 0.08695,
+"p6": 0.08695,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.03956,
+"score": 56.0,
+"b": "35+",
+"v": "buy2"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "GIFTSTR",
+"addr": "EQA9VQKbj4MSB0k-7sK1UrYyIgn9UnUpGXpUckBe9-osl0dj",
+"p0": 0.0003558,
+"score": 32.0,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "WETH",
+"addr": "EQBTkLAhEteZCRgRe_xMs5ZE0bMrduYxKbyzGCpXXW8dRWOT",
+"p0": 1789.64,
+"score": 22.0,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "cbBTC",
+"addr": "EQDhyPzbIjJT_WnY3gGprjSYUK9fiGMjWMezxO8MZiUdfb_B",
+"p0": 63580.95,
+"score": 17.5,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "X",
+"addr": "EQB4zZusHsbU2vVTPqjhlokIOoiZhEdCMT703CWEzhTOo__X",
+"p0": 4.238e-06,
+"score": 17.1,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "TCAT",
+"addr": "EQBtDmYgCKk3ecQ1x-j0CLZRnPYyaV7cB33ad036QN-HE2C7",
+"p0": 7.937e-05,
+"score": 16.2,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-18T17:56:04+00:00",
+"sym": "MITTENS",
+"addr": "EQBwy-wJ-wCqh0mfJHoWjmulJ0oIRKEJJt75ULyrJNPcnn5z",
+"p0": 0.0001324,
+"score": 15.5,
+"b": "10-20",
 "v": "no"
 }
 ],
@@ -1061,12 +1033,12 @@
 "downs": 2
 },
 "10-20": {
-"n": 27,
+"n": 28,
 "hits": 1,
 "downs": 0
 },
 "<10": {
-"n": 29,
+"n": 35,
 "hits": 0,
 "downs": 0
 },
@@ -1077,5 +1049,5 @@
 }
 },
 "keepalive_day": "2026-11-18",
-"last_run": "2026-11-18T09:00:12+00:00"
+"last_run": "2026-11-18T17:56:04+00:00"
 }
