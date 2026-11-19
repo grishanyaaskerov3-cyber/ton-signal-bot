@@ -1,114 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "STON",
-"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
-"p0": 0.404,
-"score": 45.9,
-"b": "35+",
-"v": "buy2",
-"max6": 0.404,
-"min6": 0.4006,
-"p1": 0.4006,
-"p6": 0.4025,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.4105,
-"closed": true
-},
-{
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "MTONGA",
-"addr": "EQDuGgqZU7_AEgiOwEe-abozIefuoairTWLOyd7c_f8GhzMf",
-"p0": 0.00387,
-"score": 38.7,
-"b": "35+",
-"v": "buy1",
-"max6": 0.004089,
-"min6": 0.00387,
-"p1": 0.004089,
-"p6": 0.003936,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 0.004028,
-"closed": true
-},
-{
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "CHERRY",
-"addr": "EQBKRSNRkeP1-2jcg5T_f__0s5Hj-vrbfNLMQy8dnZs7xd_p",
-"p0": 1.049e-05,
-"score": 30.1,
-"b": "20-35",
-"v": "no",
-"max6": 1.1e-05,
-"min6": 1.049e-05,
-"p1": 1.1e-05,
-"p6": 1.116e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.29e-05,
-"closed": true
-},
-{
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "MEM",
-"addr": "EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF",
-"p0": 5.851e-05,
-"score": 26.9,
-"b": "20-35",
-"v": "no",
-"max6": 5.929e-05,
-"min6": 5.851e-05,
-"p1": 5.929e-05,
-"p6": 5.929e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 5.802e-05,
-"closed": true
-},
-{
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "GEMSTON",
-"addr": "EQBX6K9aXVl3nXINCyPPL86C4ONVmQ8vK360u6dykFKXpHCa",
-"p0": 0.08666,
-"score": 21.5,
-"b": "20-35",
-"v": "no",
-"max6": 0.08716,
-"min6": 0.08666,
-"p1": 0.08716,
-"p6": 0.08644,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.08696,
-"closed": true
-},
-{
-"t": "2026-11-15T20:16:54+00:00",
-"sym": "BEAR",
-"addr": "EQBtv7I3pZpMAUChef2Vrk-U1GcCE00rROuHgMJ9CvjodRZW",
-"p0": 8.14e-08,
-"score": 21.2,
-"b": "20-35",
-"v": "no",
-"max6": 8.14e-08,
-"min6": 8.14e-08,
-"p1": 8.14e-08,
-"p6": 8.14e-08,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 9.13940206304301e-08,
-"closed": true
-},
-{
 "t": "2026-11-16T00:16:20+00:00",
 "sym": "UTYAN",
 "addr": "EQAcgSTtV4lVHTcYYZafhyulD5gb6hhzSRwcDRKqCUGYwtve",
@@ -680,7 +572,9 @@
 "p6": 0.02643,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02386,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -694,7 +588,9 @@
 "p6": 0.0585,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0662354382034718,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -708,7 +604,9 @@
 "p6": 0.0001343,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0001221,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -722,7 +620,9 @@
 "p6": 0.00054,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0005105,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -736,7 +636,9 @@
 "p6": 3863.64,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 3772.65,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -750,7 +652,9 @@
 "p6": 0.02925,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02868,
+"closed": true
 },
 {
 "t": "2026-11-17T18:24:19+00:00",
@@ -764,7 +668,9 @@
 "p6": 1.212e-09,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.227e-09,
+"closed": true
 },
 {
 "t": "2026-11-18T01:12:33+00:00",
@@ -969,7 +875,12 @@
 "p0": 0.03956,
 "score": 56.0,
 "b": "35+",
-"v": "buy2"
+"v": "buy2",
+"p1": 0.0394,
+"p6": 0.0394,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -978,7 +889,12 @@
 "p0": 0.0003558,
 "score": 32.0,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.0003565,
+"p6": 0.0003565,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -987,7 +903,12 @@
 "p0": 1789.64,
 "score": 22.0,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 1773.2,
+"p6": 1773.2,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -996,7 +917,12 @@
 "p0": 63580.95,
 "score": 17.5,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 63058.48,
+"p6": 63058.48,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -1005,7 +931,12 @@
 "p0": 4.238e-06,
 "score": 17.1,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 4.318e-06,
+"p6": 4.318e-06,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -1014,7 +945,12 @@
 "p0": 7.937e-05,
 "score": 16.2,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 7.937e-05,
+"p6": 7.937e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-18T17:56:04+00:00",
@@ -1023,17 +959,85 @@
 "p0": 0.0001324,
 "score": 15.5,
 "b": "10-20",
+"v": "no",
+"p1": 0.0001221,
+"p6": 0.0001221,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "BUDDY",
+"addr": "EQDZvDW7Cf33YjMpeVr771PMrYgymGFyibTdcL4y-unuFtmA",
+"p0": 0.03049,
+"score": 33.3,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "STORM",
+"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
+"p0": 0.003034,
+"score": 19.0,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.0394,
+"score": 12.8,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "SP",
+"addr": "EQACLXDwit01stiqK9FvYiJo15luVzfD5zU8uwDSq6JXxbP8",
+"p0": 0.002956,
+"score": 7.2,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "STON",
+"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
+"p0": 0.4132,
+"score": 5.6,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "UTYA",
+"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
+"p0": 0.02563,
+"score": 2.9,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-19T00:11:31+00:00",
+"sym": "AMORE",
+"addr": "EQC7js8NLX3v57ZuRmuusNtMSBdki4va_qyL7sAwdmosf_xK",
+"p0": 0.0001994,
+"score": 0.5,
+"b": "<10",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 51,
+"n": 53,
 "hits": 0,
 "downs": 2
 },
 "10-20": {
-"n": 28,
+"n": 32,
 "hits": 1,
 "downs": 0
 },
@@ -1043,11 +1047,11 @@
 "downs": 0
 },
 "35+": {
-"n": 12,
+"n": 13,
 "hits": 1,
 "downs": 0
 }
 },
-"keepalive_day": "2026-11-18",
-"last_run": "2026-11-18T17:56:04+00:00"
+"keepalive_day": "2026-11-19",
+"last_run": "2026-11-19T00:11:31+00:00"
 }
