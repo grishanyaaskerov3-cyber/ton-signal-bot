@@ -1,118 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "UTYAN",
-"addr": "EQAcgSTtV4lVHTcYYZafhyulD5gb6hhzSRwcDRKqCUGYwtve",
-"p0": 0.0009036,
-"score": 36.9,
-"b": "35+",
-"v": "no",
-"p1": 0.0007916,
-"p6": 0.0007916,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.000905529517809709,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "PIRATE",
-"addr": "EQDCb2loMIB8YS53GEo2r2ggS9AW1Dz-zX_as4DtxXV1u8XY",
-"p0": 0.01756,
-"score": 31.5,
-"b": "20-35",
-"v": "no",
-"p1": 0.01776,
-"p6": 0.01776,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.01737,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "ATF",
-"addr": "EQANcW45W0Tp91bzvHayaPO6-6hf1Lm4XlWZ4rN6L5ofPWdb",
-"p0": 0.0001418,
-"score": 30.6,
-"b": "20-35",
-"v": "no",
-"p1": 0.0001377,
-"p6": 0.0001377,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0001408,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "MTONGA",
-"addr": "EQDuGgqZU7_AEgiOwEe-abozIefuoairTWLOyd7c_f8GhzMf",
-"p0": 0.004046,
-"score": 30.5,
-"b": "20-35",
-"v": "no",
-"p1": 0.004055,
-"p6": 0.004055,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003936,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "TCAT",
-"addr": "EQBtDmYgCKk3ecQ1x-j0CLZRnPYyaV7cB33ad036QN-HE2C7",
-"p0": 7.995e-05,
-"score": 16.0,
-"b": "10-20",
-"v": "no",
-"p1": 7.948e-05,
-"p6": 7.948e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 8.386e-05,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "VIRUS",
-"addr": "EQC7zE2BVcLiybBMuQ1giOPYmO4Ji88J12r7duqMJWOtFxtr",
-"p0": 1.186e-05,
-"score": 9.2,
-"b": "<10",
-"v": "no",
-"p1": 1.24e-05,
-"p6": 1.24e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.253e-05,
-"closed": true
-},
-{
-"t": "2026-11-17T08:59:00+00:00",
-"sym": "PLUSHPEPE",
-"addr": "EQCQUbMUqcm6NYr6QdfIl3R3SE28wUpoX51Za604x9BSbA6y",
-"p0": 0.0001814,
-"score": 4.8,
-"b": "<10",
-"v": "no",
-"p1": 0.000176,
-"p6": 0.000176,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0001839,
-"closed": true
-},
-{
 "t": "2026-11-17T18:24:19+00:00",
 "sym": "MAJOR",
 "addr": "EQCuPm01HldiduQ55xaBF_1kaW_WAUy5DHey8suqzU_MAJOR",
@@ -684,7 +572,9 @@
 "p6": 0.008494,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.008376,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -698,7 +588,9 @@
 "p6": 0.0009976,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0009985,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -712,7 +604,9 @@
 "p6": 0.0003058,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0002868,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -726,7 +620,9 @@
 "p6": 0.003718,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0035,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -740,7 +636,9 @@
 "p6": 0.002927,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.003247,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -754,7 +652,9 @@
 "p6": 0.000437,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0004062,
+"closed": true
 },
 {
 "t": "2026-11-19T07:49:32+00:00",
@@ -768,7 +668,9 @@
 "p6": 5.694e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 5.645e-05,
+"closed": true
 },
 {
 "t": "2026-11-19T17:15:24+00:00",
@@ -973,7 +875,12 @@
 "p0": 3587.85,
 "score": 36.4,
 "b": "35+",
-"v": "buy2"
+"v": "buy2",
+"p1": 3587.38,
+"p6": 3587.38,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -982,7 +889,12 @@
 "p0": 2203.53855742255,
 "score": 20.6,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 2203.53855742255,
+"p6": 2203.53855742255,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -991,7 +903,12 @@
 "p0": 0.04109,
 "score": 6.7,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.03894,
+"p6": 0.03894,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -1000,7 +917,12 @@
 "p0": 0.001415,
 "score": 3.5,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.00135,
+"p6": 0.00135,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -1009,7 +931,12 @@
 "p0": 0.4186,
 "score": -0.6,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.4171,
+"p6": 0.4171,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -1018,7 +945,12 @@
 "p0": 0.02447,
 "score": -1.6,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.02285,
+"p6": 0.02285,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-20T06:56:25+00:00",
@@ -1027,12 +959,80 @@
 "p0": 1.331e-05,
 "score": -3.1,
 "b": "<10",
+"v": "no",
+"p1": 1.395e-05,
+"p6": 1.395e-05,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "STORM",
+"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
+"p0": 0.002845,
+"score": 52.0,
+"b": "35+",
+"v": "buy2"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "WETH",
+"addr": "EQBTkLAhEteZCRgRe_xMs5ZE0bMrduYxKbyzGCpXXW8dRWOT",
+"p0": 1669.54,
+"score": 36.6,
+"b": "35+",
+"v": "buy2"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "UTYA",
+"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
+"p0": 0.02285,
+"score": 35.8,
+"b": "35+",
+"v": "buy2"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "PX",
+"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
+"p0": 0.008376,
+"score": 34.3,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "VIRUS",
+"addr": "EQC7zE2BVcLiybBMuQ1giOPYmO4Ji88J12r7duqMJWOtFxtr",
+"p0": 1.243e-05,
+"score": 27.9,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "JETTON",
+"addr": "EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon",
+"p0": 0.01368,
+"score": 26.3,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-20T16:00:18+00:00",
+"sym": "FRE",
+"addr": "EQASw-4YMyp3HDLLTgjDlU1EB9d1R5cKgVzUPQbizHWABz6U",
+"p0": 0.0003407,
+"score": 25.3,
+"b": "20-35",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 60,
+"n": 61,
 "hits": 0,
 "downs": 2
 },
@@ -1042,16 +1042,16 @@
 "downs": 0
 },
 "<10": {
-"n": 45,
+"n": 50,
 "hits": 0,
 "downs": 0
 },
 "35+": {
-"n": 16,
+"n": 17,
 "hits": 1,
 "downs": 0
 }
 },
 "keepalive_day": "2026-11-20",
-"last_run": "2026-11-20T06:56:25+00:00"
+"last_run": "2026-11-20T16:00:18+00:00"
 }
