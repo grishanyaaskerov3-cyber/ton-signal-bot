@@ -1,118 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "BUDDY",
-"addr": "EQDZvDW7Cf33YjMpeVr771PMrYgymGFyibTdcL4y-unuFtmA",
-"p0": 0.03049,
-"score": 33.3,
-"b": "20-35",
-"v": "no",
-"p1": 0.03057,
-"p6": 0.03057,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.03025,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "STORM",
-"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
-"p0": 0.003034,
-"score": 19.0,
-"b": "10-20",
-"v": "buy1",
-"p1": 0.00304,
-"p6": 0.00304,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003015,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "REDO",
-"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
-"p0": 0.0394,
-"score": 12.8,
-"b": "10-20",
-"v": "buy1",
-"p1": 0.03934,
-"p6": 0.03934,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.04109,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "SP",
-"addr": "EQACLXDwit01stiqK9FvYiJo15luVzfD5zU8uwDSq6JXxbP8",
-"p0": 0.002956,
-"score": 7.2,
-"b": "<10",
-"v": "no",
-"p1": 0.002988,
-"p6": 0.002988,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.002696,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "STON",
-"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
-"p0": 0.4132,
-"score": 5.6,
-"b": "<10",
-"v": "no",
-"p1": 0.4173,
-"p6": 0.4173,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.4186,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "UTYA",
-"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
-"p0": 0.02563,
-"score": 2.9,
-"b": "<10",
-"v": "no",
-"p1": 0.02604,
-"p6": 0.02604,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02447,
-"closed": true
-},
-{
-"t": "2026-11-19T00:11:31+00:00",
-"sym": "AMORE",
-"addr": "EQC7js8NLX3v57ZuRmuusNtMSBdki4va_qyL7sAwdmosf_xK",
-"p0": 0.0001994,
-"score": 0.5,
-"b": "<10",
-"v": "no",
-"p1": 0.000203,
-"p6": 0.000203,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.000202297371326613,
-"closed": true
-},
-{
 "t": "2026-11-19T07:49:32+00:00",
 "sym": "PX",
 "addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
@@ -810,7 +698,9 @@
 "p6": 1.043,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.05294762101912,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -824,7 +714,9 @@
 "p6": 0.0277,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02873,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -838,7 +730,9 @@
 "p6": 8.638e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 8.84799586011612e-05,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -852,7 +746,9 @@
 "p6": 3551.98,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 3553.42,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -866,7 +762,9 @@
 "p6": 0.01384,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.01378,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -880,7 +778,9 @@
 "p6": 1651.55,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1668.8,
+"closed": true
 },
 {
 "t": "2026-11-21T03:25:53+00:00",
@@ -894,7 +794,9 @@
 "p6": 0.02835,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02828,
+"closed": true
 },
 {
 "t": "2026-11-21T11:39:08+00:00",
@@ -1004,7 +906,11 @@
 "v": "no",
 "max6": 0.003644,
 "min6": 0.003644,
-"p1": 0.003644
+"p1": 0.003644,
+"p6": 0.003644,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1016,7 +922,11 @@
 "v": "no",
 "max6": 0.007939,
 "min6": 0.007824,
-"p1": 0.007939
+"p1": 0.007939,
+"p6": 0.007671,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1028,7 +938,11 @@
 "v": "no",
 "max6": 0.0810302570809582,
 "min6": 0.06988,
-"p1": 0.0810302570809582
+"p1": 0.0810302570809582,
+"p6": 0.0802277207578176,
+"done6": true,
+"hit": true,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1040,7 +954,11 @@
 "v": "buy1",
 "max6": 0.04018,
 "min6": 0.0387,
-"p1": 0.04018
+"p1": 0.04018,
+"p6": 0.03893,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1052,7 +970,11 @@
 "v": "buy1",
 "max6": 0.02735,
 "min6": 0.02721,
-"p1": 0.02735
+"p1": 0.02735,
+"p6": 0.02616,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1064,7 +986,11 @@
 "v": "no",
 "max6": 0.0001425,
 "min6": 0.0001389,
-"p1": 0.0001425
+"p1": 0.0001425,
+"p6": 0.0001512,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T19:02:25+00:00",
@@ -1076,7 +1002,11 @@
 "v": "no",
 "max6": 0.08566,
 "min6": 0.08541,
-"p1": 0.08541
+"p1": 0.08541,
+"p6": 0.08558,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T23:44:58+00:00",
@@ -1085,7 +1015,12 @@
 "p0": 0.0004861,
 "score": 0.3,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.0004824,
+"p6": 0.0004824,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T23:44:58+00:00",
@@ -1094,7 +1029,12 @@
 "p0": 0.412,
 "score": -0.6,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.4102,
+"p6": 0.4102,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T23:44:58+00:00",
@@ -1103,7 +1043,12 @@
 "p0": 0.01378,
 "score": -1.4,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.01378,
+"p6": 0.01378,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T23:44:58+00:00",
@@ -1112,7 +1057,12 @@
 "p0": 3572.13,
 "score": -3.7,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 3553.42,
+"p6": 3553.42,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-21T23:44:58+00:00",
@@ -1121,22 +1071,90 @@
 "p0": 1.614e-05,
 "score": -3.8,
 "b": "<10",
+"v": "no",
+"p1": 1.614e-05,
+"p6": 1.614e-05,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "AVTOP",
+"addr": "EQAhZDXKDDqF2bFuWAGly5FxfgVthjOKfvbyTfzTvK8yhIUb",
+"p0": 0.0004824,
+"score": 20.2,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "SPYx",
+"addr": "EQB1fyBAA9qQDP6LEGaF3cbU-Xbr-p6ESBZGnqlHkHIHAJZv",
+"p0": 715.61,
+"score": 18.8,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "TAC",
+"addr": "EQBE_gBrU3mPI9hHjlJoR_kYyrhQgyCFD6EUWfa42W8T7EBP",
+"p0": 0.001172,
+"score": 18.4,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "LABR",
+"addr": "EQDsjxmRt6uL0wc5PzEQDy-Q5wFOqV5ZP86l3Cy1mLjiqyJE",
+"p0": 0.0001512,
+"score": 17.7,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "PX",
+"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
+"p0": 0.007671,
+"score": 16.4,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "GOMINE",
+"addr": "EQBaSm1kTmke7SD5QNlTGi1qPM8_5lfEhNjk7aB5hJ6w9z0v",
+"p0": 0.001001,
+"score": 15.8,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-22T06:25:15+00:00",
+"sym": "CHERRY",
+"addr": "EQBKRSNRkeP1-2jcg5T_f__0s5Hj-vrbfNLMQy8dnZs7xd_p",
+"p0": 1.29e-05,
+"score": 5.5,
+"b": "<10",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 72,
+"n": 74,
 "hits": 1,
 "downs": 2
 },
 "10-20": {
-"n": 48,
-"hits": 1,
+"n": 51,
+"hits": 2,
 "downs": 0
 },
 "<10": {
-"n": 51,
+"n": 58,
 "hits": 0,
 "downs": 0
 },
@@ -1146,6 +1164,6 @@
 "downs": 0
 }
 },
-"keepalive_day": "2026-11-21",
-"last_run": "2026-11-21T23:44:58+00:00"
+"keepalive_day": "2026-11-22",
+"last_run": "2026-11-22T06:25:15+00:00"
 }
