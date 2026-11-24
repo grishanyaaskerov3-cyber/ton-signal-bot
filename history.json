@@ -1,244 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "HYDRA",
-"addr": "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
-"p0": 0.08925,
-"score": 48.1,
-"b": "35+",
-"v": "no",
-"max6": 0.09227,
-"min6": 0.08925,
-"p1": 0.09227,
-"p6": 0.09532,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.09686,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "VIRUS",
-"addr": "EQC7zE2BVcLiybBMuQ1giOPYmO4Ji88J12r7duqMJWOtFxtr",
-"p0": 1.246e-05,
-"score": 40.7,
-"b": "35+",
-"v": "buy1",
-"max6": 1.246e-05,
-"min6": 1.217e-05,
-"p1": 1.217e-05,
-"p6": 1.209e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.224e-05,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "XAUH",
-"addr": "EQCMk4_OujCnk46jApHnIRbmTtYTkSmfujV9X8Ye0qvsHVKh",
-"p0": 115.57,
-"score": 37.6,
-"b": "35+",
-"v": "buy1",
-"max6": 115.57,
-"min6": 115.52,
-"p1": 115.52,
-"p6": 115.52,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 115.52,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "GRM",
-"addr": "EQC47093oX5Xhb0xuk2lCr2RhS8rj-vul61u4W2UH5ORmG_O",
-"p0": 0.0004241,
-"score": 34.8,
-"b": "20-35",
-"v": "no",
-"max6": 0.0004639,
-"min6": 0.0004241,
-"p1": 0.0004639,
-"p6": 0.0004862,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 0.0004717,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "UTYA",
-"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
-"p0": 0.02161,
-"score": 34.7,
-"b": "20-35",
-"v": "no",
-"max6": 0.02161,
-"min6": 0.02139,
-"p1": 0.02139,
-"p6": 0.02148,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02404,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "PX",
-"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
-"p0": 0.008401,
-"score": 31.4,
-"b": "20-35",
-"v": "no",
-"max6": 0.008401,
-"min6": 0.008081,
-"p1": 0.008081,
-"p6": 0.007657,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.007939,
-"closed": true
-},
-{
-"t": "2026-11-20T22:35:41+00:00",
-"sym": "durev",
-"addr": "EQB02DJ0cdUD4iQDRbBv4aYG3htePHBRK1tGeRtCnatescK0",
-"p0": 0.003687,
-"score": 27.5,
-"b": "20-35",
-"v": "no",
-"max6": 0.003687,
-"min6": 0.00357,
-"p1": 0.00357,
-"p6": 0.003482,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003554,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "CAP",
-"addr": "EQDIUPiVCgPll5gSTjlkz7HMAbUv0QTzCLvlHO177tK6nfeW",
-"p0": 1.034,
-"score": 43.1,
-"b": "35+",
-"v": "no",
-"p1": 1.043,
-"p6": 1.043,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.05294762101912,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "BUDDY",
-"addr": "EQDZvDW7Cf33YjMpeVr771PMrYgymGFyibTdcL4y-unuFtmA",
-"p0": 0.02814,
-"score": 41.2,
-"b": "35+",
-"v": "buy1",
-"p1": 0.0277,
-"p6": 0.0277,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02873,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "POK",
-"addr": "EQBp6FAkDdHD_lLKUBI-J-Et5zQeyJlixc6f3iKHBie85Fd-",
-"p0": 8.572e-05,
-"score": 34.2,
-"b": "20-35",
-"v": "no",
-"p1": 8.638e-05,
-"p6": 8.638e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 8.84799586011612e-05,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "XAUt0",
-"addr": "EQA1R_LuQCLHlMgOo1S4G7Y7W1cd0FrAkbA10Zq7rddKxi9k",
-"p0": 3584.18,
-"score": 24.9,
-"b": "20-35",
-"v": "no",
-"p1": 3551.98,
-"p6": 3551.98,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 3553.42,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "JETTON",
-"addr": "EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon",
-"p0": 0.01357,
-"score": 17.6,
-"b": "10-20",
-"v": "buy1",
-"p1": 0.01384,
-"p6": 0.01384,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.01378,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "WETH",
-"addr": "EQBTkLAhEteZCRgRe_xMs5ZE0bMrduYxKbyzGCpXXW8dRWOT",
-"p0": 1624.66,
-"score": 12.9,
-"b": "10-20",
-"v": "buy1",
-"p1": 1651.55,
-"p6": 1651.55,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1668.8,
-"closed": true
-},
-{
-"t": "2026-11-21T03:25:53+00:00",
-"sym": "MY",
-"addr": "EQCFVNlRb-NHHDQfv3Q9xvDXBLJlay855_xREsq5ZDX6KN-w",
-"p0": 0.02857,
-"score": 7.4,
-"b": "<10",
-"v": "no",
-"p1": 0.02835,
-"p6": 0.02835,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02828,
-"closed": true
-},
-{
 "t": "2026-11-21T11:39:08+00:00",
 "sym": "SP",
 "addr": "EQACLXDwit01stiqK9FvYiJo15luVzfD5zU8uwDSq6JXxbP8",
@@ -932,7 +694,9 @@
 "p6": 3624.097,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 3674.38,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -946,7 +710,9 @@
 "p6": 116.81,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 117.98,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -960,7 +726,9 @@
 "p6": 0.02581,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02668,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -974,7 +742,9 @@
 "p6": 0.002238,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.002262,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -988,7 +758,9 @@
 "p6": 1.261e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.246e-05,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -1002,7 +774,9 @@
 "p6": 0.0003426,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0003401,
+"closed": true
 },
 {
 "t": "2026-11-23T01:30:30+00:00",
@@ -1016,7 +790,9 @@
 "p6": 0.4125,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.4082,
+"closed": true
 },
 {
 "t": "2026-11-23T09:40:35+00:00",
@@ -1123,7 +899,12 @@
 "p0": 0.0007286,
 "score": 72.5,
 "b": "35+",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.0006712,
+"p6": 0.0006712,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1132,7 +913,12 @@
 "p0": 0.4101,
 "score": 27.2,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.4082,
+"p6": 0.4082,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1141,7 +927,12 @@
 "p0": 0.003688,
 "score": 26.1,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.003614,
+"p6": 0.003614,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1150,7 +941,12 @@
 "p0": 0.00298,
 "score": 20.1,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.002972,
+"p6": 0.002972,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1159,7 +955,12 @@
 "p0": 0.0217,
 "score": 15.7,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 0.02155,
+"p6": 0.02155,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1168,7 +969,12 @@
 "p0": 0.02367,
 "score": 10.3,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.0237,
+"p6": 0.0237,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -1177,31 +983,99 @@
 "p0": 0.08688,
 "score": 4.1,
 "b": "<10",
+"v": "no",
+"p1": 0.08743,
+"p6": 0.08743,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "SHIP",
+"addr": "EQA1jvPqRx6bujYohDny43hwX8FZr3b6OYnI3t2jHd4TXSJs",
+"p0": 2.061e-07,
+"score": 23.3,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "GOMINE",
+"addr": "EQBaSm1kTmke7SD5QNlTGi1qPM8_5lfEhNjk7aB5hJ6w9z0v",
+"p0": 0.001011,
+"score": 19.4,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "XAUH",
+"addr": "EQCMk4_OujCnk46jApHnIRbmTtYTkSmfujV9X8Ye0qvsHVKh",
+"p0": 117.98,
+"score": 16.6,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.03883,
+"score": 14.8,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "XAUt0",
+"addr": "EQA1R_LuQCLHlMgOo1S4G7Y7W1cd0FrAkbA10Zq7rddKxi9k",
+"p0": 3674.38,
+"score": 5.9,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "PLUSHPEPE",
+"addr": "EQCQUbMUqcm6NYr6QdfIl3R3SE28wUpoX51Za604x9BSbA6y",
+"p0": 0.0001935,
+"score": 3.8,
+"b": "<10",
+"v": "no"
+},
+{
+"t": "2026-11-24T05:51:55+00:00",
+"sym": "FRT",
+"addr": "EQA1EIDrR33zgL21rwDIfGo7h4ETWieentUvg7jIT-3aP5GG",
+"p0": 1.87,
+"score": -2.1,
+"b": "<10",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 85,
+"n": 88,
 "hits": 2,
 "downs": 2
 },
 "10-20": {
-"n": 67,
+"n": 69,
 "hits": 2,
 "downs": 0
 },
 "<10": {
-"n": 63,
+"n": 64,
 "hits": 0,
 "downs": 0
 },
 "35+": {
-"n": 28,
+"n": 29,
 "hits": 2,
 "downs": 1
 }
 },
-"keepalive_day": "2026-11-23",
-"last_run": "2026-11-23T21:58:48+00:00"
+"keepalive_day": "2026-11-24",
+"last_run": "2026-11-24T05:51:55+00:00"
 }
