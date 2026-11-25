@@ -1,132 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "GRM",
-"addr": "EQC47093oX5Xhb0xuk2lCr2RhS8rj-vul61u4W2UH5ORmG_O",
-"p0": 0.000657,
-"score": 64.1,
-"b": "35+",
-"v": "buy1",
-"max6": 0.000657,
-"min6": 0.0005458,
-"p1": 0.0005458,
-"p6": 0.0005458,
-"done6": true,
-"hit": false,
-"down": true,
-"p24": 0.0005285,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "ATF",
-"addr": "EQANcW45W0Tp91bzvHayaPO6-6hf1Lm4XlWZ4rN6L5ofPWdb",
-"p0": 0.0001223,
-"score": 36.7,
-"b": "35+",
-"v": "buy1",
-"max6": 0.0001303,
-"min6": 0.0001223,
-"p1": 0.0001303,
-"p6": 0.0001303,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 0.0001567,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "MEM",
-"addr": "EQAWpz2_G0NKxlG2VvgFbgZGPt8Y1qe0cGj-4Yw5BfmYR5iF",
-"p0": 5.489e-05,
-"score": 33.2,
-"b": "20-35",
-"v": "no",
-"max6": 5.489e-05,
-"min6": 5.461e-05,
-"p1": 5.461e-05,
-"p6": 5.461e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 5.518e-05,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "FISH",
-"addr": "EQATcUc69sGSCCMSadsVUKdGwM1BMKS-HKCWGPk60xZGgwsK",
-"p0": 1.27e-09,
-"score": 27.1,
-"b": "20-35",
-"v": "no",
-"max6": 1.317e-09,
-"min6": 1.27e-09,
-"p1": 1.317e-09,
-"p6": 1.317e-09,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.84e-09,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "SP",
-"addr": "EQACLXDwit01stiqK9FvYiJo15luVzfD5zU8uwDSq6JXxbP8",
-"p0": 0.002903,
-"score": 24.9,
-"b": "20-35",
-"v": "no",
-"max6": 0.002903,
-"min6": 0.002849,
-"p1": 0.002849,
-"p6": 0.002849,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.003257,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "FRT",
-"addr": "EQA1EIDrR33zgL21rwDIfGo7h4ETWieentUvg7jIT-3aP5GG",
-"p0": 1.97,
-"score": 21.8,
-"b": "20-35",
-"v": "no",
-"max6": 2.12429496976974,
-"min6": 1.97,
-"p1": 2.12429496976974,
-"p6": 2.12429496976974,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 1.93,
-"closed": true
-},
-{
-"t": "2026-11-22T14:50:30+00:00",
-"sym": "MTONGA",
-"addr": "EQDuGgqZU7_AEgiOwEe-abozIefuoairTWLOyd7c_f8GhzMf",
-"p0": 0.003468,
-"score": 21.2,
-"b": "20-35",
-"v": "no",
-"max6": 0.003468,
-"min6": 0.003467,
-"p1": 0.003467,
-"p6": 0.003467,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.00334,
-"closed": true
-},
-{
 "t": "2026-11-22T20:58:59+00:00",
 "sym": "OPEN",
 "addr": "EQB0apV-NyCYJDVwSBoDL86Xjp0OiwcyD8jJ0J5BVWnnDJu7",
@@ -712,7 +586,9 @@
 "p6": 0.02424,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02472,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -726,7 +602,9 @@
 "p6": 0.02647,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.025,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -740,7 +618,9 @@
 "p6": 1.004e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 9.864e-06,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -754,7 +634,9 @@
 "p6": 0.0004879,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0006509,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -768,7 +650,9 @@
 "p6": 0.0388,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.03702,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -782,7 +666,9 @@
 "p6": 0.08635,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.08755,
+"closed": true
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -796,7 +682,9 @@
 "p6": 1.138e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.205e-05,
+"closed": true
 },
 {
 "t": "2026-11-25T01:32:04+00:00",
@@ -903,7 +791,12 @@
 "p0": 3.704e-07,
 "score": 28.7,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 3.687e-07,
+"p6": 3.687e-07,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -912,7 +805,12 @@
 "p0": 2.55,
 "score": 15.3,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 2.75082316143605,
+"p6": 2.75082316143605,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -921,7 +819,12 @@
 "p0": 0.0004989,
 "score": 7.7,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.0005104,
+"p6": 0.0005104,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -930,7 +833,12 @@
 "p0": 0.00124,
 "score": 7.3,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.001246,
+"p6": 0.001246,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -939,7 +847,12 @@
 "p0": 0.002857,
 "score": 5.9,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.00289,
+"p6": 0.00289,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -948,7 +861,12 @@
 "p0": 2.349e-05,
 "score": 4.8,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 2.458e-05,
+"p6": 2.458e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-25T10:20:54+00:00",
@@ -957,22 +875,90 @@
 "p0": 0.003028,
 "score": 1.0,
 "b": "<10",
+"v": "no",
+"p1": 0.003088,
+"p6": 0.003088,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "BUDDY",
+"addr": "EQDZvDW7Cf33YjMpeVr771PMrYgymGFyibTdcL4y-unuFtmA",
+"p0": 0.025,
+"score": 41.4,
+"b": "35+",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "STON",
+"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
+"p0": 0.3972,
+"score": 29.8,
+"b": "20-35",
 "v": "no"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "PX",
+"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
+"p0": 0.007992,
+"score": 18.7,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "JETTON",
+"addr": "EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon",
+"p0": 0.01319,
+"score": 17.8,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "LAMBO",
+"addr": "EQDE1iPrP80L17RzkH3YluXsEcn5i-bPFfue259uMKKFE3h0",
+"p0": 0.0001969,
+"score": 17.8,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "LABR",
+"addr": "EQDsjxmRt6uL0wc5PzEQDy-Q5wFOqV5ZP86l3Cy1mLjiqyJE",
+"p0": 0.0001446,
+"score": 17.4,
+"b": "10-20",
+"v": "no"
+},
+{
+"t": "2026-11-25T20:05:48+00:00",
+"sym": "STORM",
+"addr": "EQBsosmcZrD6FHijA7qWGLw5wo_aH8UN435hi935jJ_STORM",
+"p0": 0.00289,
+"score": 14.4,
+"b": "10-20",
+"v": "buy1"
 }
 ],
 "stats": {
 "20-35": {
-"n": 96,
+"n": 97,
 "hits": 2,
 "downs": 2
 },
 "10-20": {
-"n": 76,
+"n": 77,
 "hits": 2,
 "downs": 0
 },
 "<10": {
-"n": 68,
+"n": 73,
 "hits": 0,
 "downs": 0
 },
@@ -983,5 +969,5 @@
 }
 },
 "keepalive_day": "2026-11-25",
-"last_run": "2026-11-25T10:20:54+00:00"
+"last_run": "2026-11-25T20:05:48+00:00"
 }
