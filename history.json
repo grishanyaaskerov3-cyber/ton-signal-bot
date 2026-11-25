@@ -1,212 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "sTONks",
-"addr": "EQBng_Ux8DLKeaLZ4kN4eec-U-SJ1fMtYvqQANtL0oxKRQh_",
-"p0": 0.003644,
-"score": 29.6,
-"b": "20-35",
-"v": "no",
-"max6": 0.003644,
-"min6": 0.003644,
-"p1": 0.003644,
-"p6": 0.003644,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.00367947850219591,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "PX",
-"addr": "EQB420yQsZobGcy0VYDfSKHpG2QQlw-j1f_tPu1J488I__PX",
-"p0": 0.007824,
-"score": 20.5,
-"b": "20-35",
-"v": "no",
-"max6": 0.007939,
-"min6": 0.007824,
-"p1": 0.007939,
-"p6": 0.007671,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.008278,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "lINI",
-"addr": "EQAnWmnT6z65bG3FsyLBgLljn4zn4z7Io7kYIlhOoyeYu-F8",
-"p0": 0.06988,
-"score": 13.1,
-"b": "10-20",
-"v": "no",
-"max6": 0.0810302570809582,
-"min6": 0.06988,
-"p1": 0.0810302570809582,
-"p6": 0.0802277207578176,
-"done6": true,
-"hit": true,
-"down": false,
-"p24": 0.396063240413775,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "REDO",
-"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
-"p0": 0.0387,
-"score": 12.1,
-"b": "10-20",
-"v": "buy1",
-"max6": 0.04018,
-"min6": 0.0387,
-"p1": 0.04018,
-"p6": 0.03893,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.03918,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "GROYP",
-"addr": "EQAtwo6qMNwtr0iTA9eKVZ32cuACFJ0VKd78GrBWOe83-X1P",
-"p0": 0.02721,
-"score": 11.2,
-"b": "10-20",
-"v": "buy1",
-"max6": 0.02735,
-"min6": 0.02721,
-"p1": 0.02735,
-"p6": 0.02616,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.02777,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "LABR",
-"addr": "EQDsjxmRt6uL0wc5PzEQDy-Q5wFOqV5ZP86l3Cy1mLjiqyJE",
-"p0": 0.0001389,
-"score": 9.1,
-"b": "<10",
-"v": "no",
-"max6": 0.0001425,
-"min6": 0.0001389,
-"p1": 0.0001425,
-"p6": 0.0001512,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0001413,
-"closed": true
-},
-{
-"t": "2026-11-21T19:02:25+00:00",
-"sym": "GEMSTON",
-"addr": "EQBX6K9aXVl3nXINCyPPL86C4ONVmQ8vK360u6dykFKXpHCa",
-"p0": 0.08566,
-"score": 6.1,
-"b": "<10",
-"v": "no",
-"max6": 0.08566,
-"min6": 0.08541,
-"p1": 0.08541,
-"p6": 0.08558,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.08641,
-"closed": true
-},
-{
-"t": "2026-11-21T23:44:58+00:00",
-"sym": "AVTOP",
-"addr": "EQAhZDXKDDqF2bFuWAGly5FxfgVthjOKfvbyTfzTvK8yhIUb",
-"p0": 0.0004861,
-"score": 0.3,
-"b": "<10",
-"v": "no",
-"p1": 0.0004824,
-"p6": 0.0004824,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.0005115,
-"closed": true
-},
-{
-"t": "2026-11-21T23:44:58+00:00",
-"sym": "STON",
-"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
-"p0": 0.412,
-"score": -0.6,
-"b": "<10",
-"v": "no",
-"p1": 0.4102,
-"p6": 0.4102,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.4094,
-"closed": true
-},
-{
-"t": "2026-11-21T23:44:58+00:00",
-"sym": "JETTON",
-"addr": "EQAQXlWJvGbbFfE8F3oS8s87lIgdovS455IsWFaRdmJetTon",
-"p0": 0.01378,
-"score": -1.4,
-"b": "<10",
-"v": "no",
-"p1": 0.01378,
-"p6": 0.01378,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.01313,
-"closed": true
-},
-{
-"t": "2026-11-21T23:44:58+00:00",
-"sym": "XAUt0",
-"addr": "EQA1R_LuQCLHlMgOo1S4G7Y7W1cd0FrAkbA10Zq7rddKxi9k",
-"p0": 3572.13,
-"score": -3.7,
-"b": "<10",
-"v": "no",
-"p1": 3553.42,
-"p6": 3553.42,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 3625.68,
-"closed": true
-},
-{
-"t": "2026-11-21T23:44:58+00:00",
-"sym": "CATS",
-"addr": "EQBadq9p12uC1KfSiPCAaoEvhpXPHj7hBWq-mqGntuwE2C1C",
-"p0": 1.614e-05,
-"score": -3.8,
-"b": "<10",
-"v": "no",
-"p1": 1.614e-05,
-"p6": 1.614e-05,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.635e-05,
-"closed": true
-},
-{
 "t": "2026-11-22T06:25:15+00:00",
 "sym": "AVTOP",
 "addr": "EQAhZDXKDDqF2bFuWAGly5FxfgVthjOKfvbyTfzTvK8yhIUb",
@@ -806,7 +600,9 @@
 "p6": 0.0006712,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0006071,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -820,7 +616,9 @@
 "p6": 0.4082,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.3982,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -834,7 +632,9 @@
 "p6": 0.003614,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.003375,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -848,7 +648,9 @@
 "p6": 0.002972,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.002826,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -862,7 +664,9 @@
 "p6": 0.02155,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02155,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -876,7 +680,9 @@
 "p6": 0.0237,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02069,
+"closed": true
 },
 {
 "t": "2026-11-23T21:58:48+00:00",
@@ -890,7 +696,9 @@
 "p6": 0.08743,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.08635,
+"closed": true
 },
 {
 "t": "2026-11-24T05:51:55+00:00",
@@ -997,7 +805,12 @@
 "p0": 0.02414,
 "score": 52.4,
 "b": "35+",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.02424,
+"p6": 0.02424,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1006,7 +819,12 @@
 "p0": 0.02552,
 "score": 33.8,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.02647,
+"p6": 0.02647,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1015,7 +833,12 @@
 "p0": 1.037e-05,
 "score": 32.0,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 1.004e-05,
+"p6": 1.004e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1024,7 +847,12 @@
 "p0": 0.000494,
 "score": 30.7,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.0004879,
+"p6": 0.0004879,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1033,7 +861,12 @@
 "p0": 0.03576,
 "score": 25.5,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.0388,
+"p6": 0.0388,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1042,7 +875,12 @@
 "p0": 0.08618,
 "score": 24.5,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.08635,
+"p6": 0.08635,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-24T17:27:04+00:00",
@@ -1051,12 +889,80 @@
 "p0": 1.173e-05,
 "score": 23.9,
 "b": "20-35",
+"v": "no",
+"p1": 1.138e-05,
+"p6": 1.138e-05,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.0388,
+"score": 36.7,
+"b": "35+",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "DUREV",
+"addr": "EQB02DJ0cdUD4iQDRbBv4aYG3htePHBRK1tGeRtCnatescK0",
+"p0": 0.003375,
+"score": 24.1,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "PLANE",
+"addr": "EQAX9J60va-0wIDMdqGLRMf7imJvG0Ytyi3Yxnq9y-nbNCq2",
+"p0": 0.002557,
+"score": 19.6,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "MAJOR",
+"addr": "EQCuPm01HldiduQ55xaBF_1kaW_WAUy5DHey8suqzU_MAJOR",
+"p0": 0.02155,
+"score": 16.1,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "UTYA",
+"addr": "EQBaCgUwOoc6gHCNln_oJzb0mVs79YG7wYoavh-o1ItaneLA",
+"p0": 0.02069,
+"score": 15.4,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "CHERRY",
+"addr": "EQBKRSNRkeP1-2jcg5T_f__0s5Hj-vrbfNLMQy8dnZs7xd_p",
+"p0": 1.138e-05,
+"score": 12.6,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-25T01:32:04+00:00",
+"sym": "FRT",
+"addr": "EQA1EIDrR33zgL21rwDIfGo7h4ETWieentUvg7jIT-3aP5GG",
+"p0": 1.78,
+"score": 4.8,
+"b": "<10",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 89,
+"n": 95,
 "hits": 2,
 "downs": 2
 },
@@ -1071,11 +977,11 @@
 "downs": 0
 },
 "35+": {
-"n": 29,
+"n": 30,
 "hits": 2,
 "downs": 1
 }
 },
-"keepalive_day": "2026-11-24",
-"last_run": "2026-11-24T17:27:04+00:00"
+"keepalive_day": "2026-11-25",
+"last_run": "2026-11-25T01:32:04+00:00"
 }
