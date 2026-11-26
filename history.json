@@ -572,7 +572,9 @@
 "p6": 0.02585,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02434,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -586,7 +588,9 @@
 "p6": 0.399,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.3988,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -600,7 +604,9 @@
 "p6": 0.008012,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.007733,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -614,7 +620,9 @@
 "p6": 0.01334,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.01327,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -628,7 +636,9 @@
 "p6": 0.0002112,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0002086,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -642,7 +652,9 @@
 "p6": 0.0001429,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.0001403,
+"closed": true
 },
 {
 "t": "2026-11-25T20:05:48+00:00",
@@ -656,7 +668,9 @@
 "p6": 0.002958,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.002925,
+"closed": true
 },
 {
 "t": "2026-11-26T02:45:02+00:00",
@@ -763,7 +777,12 @@
 "p0": 0.0001755,
 "score": 39.6,
 "b": "35+",
-"v": "no"
+"v": "no",
+"p1": 0.0001639,
+"p6": 0.0001639,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -772,7 +791,12 @@
 "p0": 1.193e-05,
 "score": 29.3,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 1.222e-05,
+"p6": 1.222e-05,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -781,7 +805,12 @@
 "p0": 0.02287,
 "score": 26.5,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.02359,
+"p6": 0.02359,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -790,7 +819,12 @@
 "p0": 1.79,
 "score": 22.8,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 1.78,
+"p6": 1.78,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -799,7 +833,12 @@
 "p0": 0.0008576,
 "score": 20.4,
 "b": "20-35",
-"v": "no"
+"v": "no",
+"p1": 0.0008565,
+"p6": 0.0008565,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -808,7 +847,12 @@
 "p0": 0.03312,
 "score": 14.2,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.03337,
+"p6": 0.03337,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -817,17 +861,85 @@
 "p0": 5.96e-05,
 "score": 11.0,
 "b": "10-20",
+"v": "no",
+"p1": 6.117e-05,
+"p6": 6.117e-05,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "BUYT",
+"addr": "EQCWibYIG72ifoJlXD39iXia-frDwTvA0aeL7-pmmgvj3dwf",
+"p0": 0.0001278,
+"score": 76.1,
+"b": "35+",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.03633,
+"score": 34.5,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "POK",
+"addr": "EQBp6FAkDdHD_lLKUBI-J-Et5zQeyJlixc6f3iKHBie85Fd-",
+"p0": 8.45e-05,
+"score": 30.4,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "AFL",
+"addr": "EQBbkr-QWl8fsIgOZzTUmnI8vpRzzCr8O5vRRcvWgkeg_6Lm",
+"p0": 0.03337,
+"score": 26.5,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "STON",
+"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
+"p0": 0.3988,
+"score": 20.6,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "MEH",
+"addr": "EQAVw-6sK7NJepSjgH1gW60lYEkHYzSmK9pHbXstCClDY4BV",
+"p0": 1.537e-05,
+"score": 20.2,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-26T21:51:14+00:00",
+"sym": "DICK",
+"addr": "EQAOLOJ9jhS1RmzEQwayCcD_8glZhI3m7lNOfoNTUhP4Ta8n",
+"p0": 0.0002122,
+"score": 19.3,
+"b": "10-20",
 "v": "no"
 }
 ],
 "stats": {
 "20-35": {
-"n": 98,
+"n": 102,
 "hits": 2,
 "downs": 2
 },
 "10-20": {
-"n": 82,
+"n": 84,
 "hits": 2,
 "downs": 0
 },
@@ -837,11 +949,11 @@
 "downs": 0
 },
 "35+": {
-"n": 33,
+"n": 34,
 "hits": 2,
 "downs": 1
 }
 },
 "keepalive_day": "2026-11-26",
-"last_run": "2026-11-26T12:11:00+00:00"
+"last_run": "2026-11-26T21:51:14+00:00"
 }
