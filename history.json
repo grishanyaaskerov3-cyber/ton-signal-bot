@@ -1,118 +1,6 @@
 {
 "signals": [
 {
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "SHIP",
-"addr": "EQA1jvPqRx6bujYohDny43hwX8FZr3b6OYnI3t2jHd4TXSJs",
-"p0": 2.061e-07,
-"score": 23.3,
-"b": "20-35",
-"v": "no",
-"p1": 2.061e-07,
-"p6": 2.061e-07,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 2.05837417323542e-07,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "GOMINE",
-"addr": "EQBaSm1kTmke7SD5QNlTGi1qPM8_5lfEhNjk7aB5hJ6w9z0v",
-"p0": 0.001011,
-"score": 19.4,
-"b": "10-20",
-"v": "no",
-"p1": 0.001001,
-"p6": 0.001001,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.00101,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "XAUH",
-"addr": "EQCMk4_OujCnk46jApHnIRbmTtYTkSmfujV9X8Ye0qvsHVKh",
-"p0": 117.98,
-"score": 16.6,
-"b": "10-20",
-"v": "buy1",
-"p1": 115.42,
-"p6": 115.42,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 114.56,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "REDO",
-"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
-"p0": 0.03883,
-"score": 14.8,
-"b": "10-20",
-"v": "buy1",
-"p1": 0.03576,
-"p6": 0.03576,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.03747,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "XAUt0",
-"addr": "EQA1R_LuQCLHlMgOo1S4G7Y7W1cd0FrAkbA10Zq7rddKxi9k",
-"p0": 3674.38,
-"score": 5.9,
-"b": "<10",
-"v": "no",
-"p1": 3557.52,
-"p6": 3557.52,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 3559.086,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "PLUSHPEPE",
-"addr": "EQCQUbMUqcm6NYr6QdfIl3R3SE28wUpoX51Za604x9BSbA6y",
-"p0": 0.0001935,
-"score": 3.8,
-"b": "<10",
-"v": "no",
-"p1": 0.0001887,
-"p6": 0.0001887,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 0.00018826335804273,
-"closed": true
-},
-{
-"t": "2026-11-24T05:51:55+00:00",
-"sym": "FRT",
-"addr": "EQA1EIDrR33zgL21rwDIfGo7h4ETWieentUvg7jIT-3aP5GG",
-"p0": 1.87,
-"score": -2.1,
-"b": "<10",
-"v": "no",
-"p1": 1.82,
-"p6": 1.82,
-"done6": true,
-"hit": false,
-"down": false,
-"p24": 1.76,
-"closed": true
-},
-{
 "t": "2026-11-24T17:27:04+00:00",
 "sym": "GROYP",
 "addr": "EQAtwo6qMNwtr0iTA9eKVZ32cuACFJ0VKd78GrBWOe83-X1P",
@@ -684,7 +572,9 @@
 "p6": 0.0001639,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.000169856985928528,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -698,7 +588,9 @@
 "p6": 1.222e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.328e-05,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -712,7 +604,9 @@
 "p6": 0.02359,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.02562,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -726,7 +620,9 @@
 "p6": 1.78,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 1.71,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -740,7 +636,9 @@
 "p6": 0.0008565,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.000896772121159305,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -754,7 +652,9 @@
 "p6": 0.03337,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 0.03337,
+"closed": true
 },
 {
 "t": "2026-11-26T12:11:00+00:00",
@@ -768,7 +668,9 @@
 "p6": 6.117e-05,
 "done6": true,
 "hit": false,
-"down": false
+"down": false,
+"p24": 6.86347257668204e-05,
+"closed": true
 },
 {
 "t": "2026-11-26T21:51:14+00:00",
@@ -889,7 +791,12 @@
 "p0": 0.002522,
 "score": 19.8,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 0.002743,
+"p6": 0.002743,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -898,7 +805,12 @@
 "p0": 1.67,
 "score": 16.0,
 "b": "10-20",
-"v": "buy1"
+"v": "buy1",
+"p1": 1.71,
+"p6": 1.71,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -907,7 +819,12 @@
 "p0": 0.0006271,
 "score": 15.8,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 0.0006372,
+"p6": 0.0006372,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -916,7 +833,12 @@
 "p0": 0.04904,
 "score": 15.5,
 "b": "10-20",
-"v": "no"
+"v": "no",
+"p1": 0.04904,
+"p6": 0.04904,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -925,7 +847,12 @@
 "p0": 2.44,
 "score": 5.9,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 1.79,
+"p6": 1.79,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -934,7 +861,12 @@
 "p0": 0.007873,
 "score": 4.8,
 "b": "<10",
-"v": "no"
+"v": "no",
+"p1": 0.007806,
+"p6": 0.007806,
+"done6": true,
+"hit": false,
+"down": false
 },
 {
 "t": "2026-11-27T04:02:13+00:00",
@@ -943,6 +875,74 @@
 "p0": 0.003079,
 "score": 0.8,
 "b": "<10",
+"v": "no",
+"p1": 0.00303,
+"p6": 0.00303,
+"done6": true,
+"hit": false,
+"down": false
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "STON",
+"addr": "EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
+"p0": 0.4077,
+"score": 29.8,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "LABR",
+"addr": "EQDsjxmRt6uL0wc5PzEQDy-Q5wFOqV5ZP86l3Cy1mLjiqyJE",
+"p0": 0.0001315,
+"score": 26.1,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "REDO",
+"addr": "EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+"p0": 0.03805,
+"score": 25.4,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "GROYP",
+"addr": "EQAtwo6qMNwtr0iTA9eKVZ32cuACFJ0VKd78GrBWOe83-X1P",
+"p0": 0.0264,
+"score": 24.4,
+"b": "20-35",
+"v": "no"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "SPYx",
+"addr": "EQB1fyBAA9qQDP6LEGaF3cbU-Xbr-p6ESBZGnqlHkHIHAJZv",
+"p0": 748.43,
+"score": 18.1,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "cbBTC",
+"addr": "EQDhyPzbIjJT_WnY3gGprjSYUK9fiGMjWMezxO8MZiUdfb_B",
+"p0": 61419.9,
+"score": 15.8,
+"b": "10-20",
+"v": "buy1"
+},
+{
+"t": "2026-11-27T13:42:16+00:00",
+"sym": "COCOON",
+"addr": "EQBiyZMUXvdnRYFUk3_R5uPdsR2ROI9mes_1S-jL1tIQDhDK",
+"p0": 0.0006372,
+"score": 14.5,
+"b": "10-20",
 "v": "no"
 }
 ],
@@ -953,12 +953,12 @@
 "downs": 2
 },
 "10-20": {
-"n": 85,
+"n": 89,
 "hits": 2,
 "downs": 0
 },
 "<10": {
-"n": 79,
+"n": 82,
 "hits": 0,
 "downs": 0
 },
@@ -969,5 +969,5 @@
 }
 },
 "keepalive_day": "2026-11-27",
-"last_run": "2026-11-27T04:02:13+00:00"
+"last_run": "2026-11-27T13:42:16+00:00"
 }
